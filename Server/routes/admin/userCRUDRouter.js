@@ -3,9 +3,18 @@ const userRouter=express.Router()
 var mongoose = require('mongoose');
 const User = mongoose.model("UserInfo");
 const bcrypt = require("bcryptjs");
-userRouter.delete("/user",async (req,res)=>{
-    const email=req.body.email;
-    await User.remove({ email: email}, ()=>{console.log('error')});
+const cors = require("cors");
+userRouter.use(cors());
+
+userRouter.post("/user/delete",async (req,res)=>{
+    console.log("Entered")
+    const userId=req.body.id;
+    const email=req.body.previousData.email;
+    const userToDelete = await User.findOne({email});
+    console.log(userToDelete)
+    await User.findOneAndRemove({email});
+    console.log("Before return")
+    return res.send(userToDelete);
 
 });
 
@@ -31,7 +40,7 @@ userRouter.post("/user",async (req,res)=>{
           email:email,
           password: encryptedPassword,
         });
-        
+
         return res.send(user);
       } catch (error) {
         return res.send({ status: "error" });

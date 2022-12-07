@@ -50,8 +50,9 @@ export default {
   },
 
   update: (resource, params) =>{
-    console.log(`${apiUrl}/${resource}/${params.id}`)
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
+    const url=apiUrl+"/user"
+    
+    httpClient(`${url}/${resource}/${params.id}`, {
       method: 'PUT',
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({ ...json, id: json._id }))},
@@ -66,22 +67,25 @@ export default {
     }).then(({ json }) => ({ data: json }));
   },
 
-  create: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}`, {
+  create: (resource, params) =>{
+    const url=apiUrl+"/user"
+    return httpClient(url, {
       method: 'POST',
       body: JSON.stringify(params.data),
     }).then(({ json }) => ({
       data: { ...params.data, id: json._id },
-    })),
+    }))},
 
-  delete: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}/${params.id}`, {
-      method: 'DELETE',
-      body: JSON.stringify(params.id),
+  delete: (resource, params) =>{
+    const url=apiUrl+"/user/delete"
+    console.log(params.id)
+    return httpClient(url, {
+      method: 'POST',
+      body: JSON.stringify(params),
     }).then(({ json }) => ({
       ...json,
       id: json._id,
-    })),
+    }))},
 
   deleteMany: (resource, params) => {
     const query = {
