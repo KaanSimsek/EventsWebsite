@@ -36,11 +36,14 @@ connect();
 
 require("./userDetails");
 require("./adminDetails");
+require("./eventDetails");
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
 // Upon opening the database successfully
 db.once('open', function () {
     const userCRUDRouter=require('./routes/admin/userCRUDRouter');
+    const eventCRUDRouter=require('./routes/admin/eventCRUDRouter');
     console.log("Connection ");
    
     const User = mongoose.model("UserInfo");
@@ -63,7 +66,7 @@ db.once('open', function () {
   //connet();
     
     app.use('/admin',userCRUDRouter)
-    
+    app.use('/admin',eventCRUDRouter)
     app.post("/login-user",async (req,res)=>{
         const { email, password } = req.body;
     

@@ -6,16 +6,30 @@ const httpClient = fetchUtils.fetchJson;
 
 export default {
   getList: (resource, params) => {
-    const url=apiUrl+"/user"
-    //console.log(url);
-    //console.log("Kaan ");
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/user"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/event"
+    }
+    
+    console.log(params);
     return httpClient(url).then(({ headers, json }) => ({
       data: json.map((resource) => ({ ...resource, id: resource._id })),
       total: parseInt(json["length"], 10),
     }));
   },
   getOne: (resource, params) =>{
-    const url=apiUrl+"/user"
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/user"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/event"
+    }
     console.log(params.id)
     return httpClient(`${url}/${params.id}`).then(({ json }) => ({
       data: { ...json, id: json._id }, //!
@@ -51,7 +65,14 @@ export default {
   },
 
   update: (resource, params) =>{
-    const url=apiUrl+"/user"
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/user"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/event"
+    }
     console.log(params.id)
     return httpClient(`${url}/${params.id}`, {
       method: 'PUT',
@@ -59,7 +80,14 @@ export default {
     }).then(({ json }) => ({data: { ...json, id: json._id }}))},
 
   updateMany: (resource, params) => {
-    const url=apiUrl+"/users"
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/users"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/events"
+    }
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
@@ -70,7 +98,14 @@ export default {
   },
 
   create: (resource, params) =>{
-    const url=apiUrl+"/user"
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/user"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/event"
+    }
     return httpClient(url, {
       method: 'POST',
       body: JSON.stringify(params.data),
@@ -79,7 +114,14 @@ export default {
     }))},
 
   delete: (resource, params) =>{
-    const url=apiUrl+"/user/delete"
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/user/delete"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/event/delete"
+    }
     console.log(params.id)
     return httpClient(url, {
       method: 'POST',
@@ -90,7 +132,14 @@ export default {
     }))},
 
   deleteMany: (resource, params) => {
-    const url=apiUrl+"/users/delete"
+    let url=""
+    if (resource==="User List"){
+      url=apiUrl+"/users/delete"
+    }
+
+    else if(resource==="Event List"){
+      url=apiUrl+"/events/delete"
+    }
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };

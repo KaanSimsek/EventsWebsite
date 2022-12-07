@@ -2,8 +2,11 @@ import React from 'react'
 import userDataProvider from '../../dataProviders/adminDataProviderForUser'
 import {Admin, Resource} from 'react-admin'
 import UsersList from './UsersList'
+import EventsList from './EventsList'
 import UsersEdit from './UsersEdit'
 import CreateNewUser from './CreateNewUser'
+import CreateNewEvent from './CreateNewEvent'
+
 function AdminPage() {
   
     return (
@@ -17,6 +20,8 @@ function AdminPage() {
         />
         <Resource
                 name="Event List"
+                list={EventsList}
+                create={CreateNewEvent}
         />
       </Admin>
     )
