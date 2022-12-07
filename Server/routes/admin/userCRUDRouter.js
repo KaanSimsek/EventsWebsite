@@ -3,13 +3,13 @@ const userRouter=express.Router()
 var mongoose = require('mongoose');
 const User = mongoose.model("UserInfo");
 
-userRouter.delete("/",async (req,res)=>{
+userRouter.delete("/user",async (req,res)=>{
     const email=req.body.email;
     await User.remove({ email: email}, ()=>{console.log('error')});
 
 });
 
-userRouter.post("/",async (req,res)=>{
+userRouter.post("/user",async (req,res)=>{
     const { name, username, email, password } = req.body;
 
     console.log("entered");
@@ -38,7 +38,7 @@ userRouter.post("/",async (req,res)=>{
 
 });
 
-userRouter.put("/",async (req,res)=>{
+userRouter.put("/user",async (req,res)=>{
     /*const exUsername=req.body.exUsername;
     const password=await bcrypt.hash(req.body.password, 10);
     const username=req.body.username;
@@ -56,7 +56,7 @@ userRouter.put("/",async (req,res)=>{
 });
 
 
-userRouter.get("/",async (req,res)=>{
+userRouter.get("/user",async (req,res)=>{
     try {
         const user = await User.find();
         //console.log(user)
@@ -66,7 +66,7 @@ userRouter.get("/",async (req,res)=>{
     }
 });
 
-userRouter.get("/:id",async (req,res)=>{
+userRouter.get("/user/:id",async (req,res)=>{
     const id=req.body.id;
     console.log("Entere")
     try {

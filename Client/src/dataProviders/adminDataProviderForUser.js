@@ -6,7 +6,7 @@ const httpClient = fetchUtils.fetchJson;
 
 export default {
   getList: (resource, params) => {
-    const url="http://localhost:4000/admin"
+    const url=apiUrl+"/user"
     //console.log(url);
     //console.log("Kaan ");
     return httpClient(url).then(({ headers, json }) => ({
@@ -15,7 +15,8 @@ export default {
     }));
   },
   getOne: (resource, params) =>{
-    return httpClient(`${apiUrl}/${params.id}`).then(({ json }) => ({
+    const url=apiUrl+"/user"
+    return httpClient(`${url}/${params.id}`).then(({ json }) => ({
       data: { ...json, id: json._id }, //!
     }))},
 

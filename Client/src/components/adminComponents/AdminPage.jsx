@@ -1,5 +1,5 @@
 import React from 'react'
-import dataProvider from '../../dataProvider'
+import userDataProvider from '../../dataProviders/adminDataProviderForUser'
 import {Admin, Resource} from 'react-admin'
 import UsersList from './UsersList'
 import UsersEdit from './UsersEdit'
@@ -8,7 +8,7 @@ function AdminPage() {
   
     return (
       
-      <Admin basename="/admin-page" dataProvider={dataProvider} >
+      <Admin basename="/admin-page" dataProvider={userDataProvider} >
         <Resource
                 name="User List"
                 list={UsersList}
