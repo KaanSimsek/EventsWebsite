@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Edit, PasswordInput, SimpleForm, TextInput } from 'react-admin';
+import { Edit,PasswordInput, SimpleForm, TextInput } from 'react-admin';
 
 function UsersEdit(props) {
     return (
         <Edit {...props}>
           <SimpleForm>
-            <TextInput disabled source="id" />
             <TextInput required source="username" />
+            <TextInput required source="email" />
             <PasswordInput required source="password"/>
           </SimpleForm>
         </Edit>

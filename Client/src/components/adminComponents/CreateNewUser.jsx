@@ -6,7 +6,7 @@ function CreateNewUser(props) {
           <SimpleForm>
             <TextInput source="name" required />
             <TextInput source="username" required />
-            <EmailField source="email" required/>
+            <TextInput source="email" required />
             <PasswordInput source="password" required/>
           </SimpleForm>
         </Create>
