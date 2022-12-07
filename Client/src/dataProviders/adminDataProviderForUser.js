@@ -59,12 +59,13 @@ export default {
     }).then(({ json }) => ({data: { ...json, id: json._id }}))},
 
   updateMany: (resource, params) => {
+    const url=apiUrl+"/users"
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
+    return httpClient(url, {
       method: 'PUT',
-      body: JSON.stringify(params.data),
+      body: JSON.stringify(params),
     }).then(({ json }) => ({ data: json }));
   },
 
@@ -89,12 +90,13 @@ export default {
     }))},
 
   deleteMany: (resource, params) => {
+    const url=apiUrl+"/users/delete"
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
-      method: 'DELETE',
-      body: JSON.stringify(params.data),
+    return httpClient(url, {
+      method: 'POST',
+      body: JSON.stringify(params),
     }).then(({ json }) => ({ data: json }));
   },
 };
