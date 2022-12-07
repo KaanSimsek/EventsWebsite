@@ -17,6 +17,7 @@ function EventsList(props) {
             <TextField source="venueID"/>
             <TextField source="title" />
             <TextField source="price" />
+            <TextField source="description"/>
             <TextField source="presenter"/>
             <DateField source="dateTime"/>
             <EditButton label="Edit" />
