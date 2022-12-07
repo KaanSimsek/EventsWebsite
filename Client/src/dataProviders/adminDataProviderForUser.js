@@ -16,6 +16,7 @@ export default {
   },
   getOne: (resource, params) =>{
     const url=apiUrl+"/user"
+    console.log(params.id)
     return httpClient(`${url}/${params.id}`).then(({ json }) => ({
       data: { ...json, id: json._id }, //!
     }))},
@@ -51,11 +52,11 @@ export default {
 
   update: (resource, params) =>{
     const url=apiUrl+"/user"
-    
-    httpClient(`${url}/${resource}/${params.id}`, {
+    console.log(params.id)
+    return httpClient(`${url}/${params.id}`, {
       method: 'PUT',
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({ ...json, id: json._id }))},
+      body: JSON.stringify(params),
+    }).then(({ json }) => ({data: { ...json, id: json._id }}))},
 
   updateMany: (resource, params) => {
     const query = {

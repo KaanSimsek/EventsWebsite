@@ -48,21 +48,19 @@ userRouter.post("/user",async (req,res)=>{
 
 });
 
-userRouter.put("/user",async (req,res)=>{
-    /*const exUsername=req.body.exUsername;
-    const password=await bcrypt.hash(req.body.password, 10);
-    const username=req.body.username;
-    if(username===""){
-        const res = await Product.updateOne({ username:exUsername }, { password: password})
-    }
-    else if(req.body.password===""){
-        const res = await Product.updateOne({ username:exUsername }, {username:username })
-    }
-    else{
-        const res = await Product.updateOne({ username:exUsername }, { password: password,username:username });
-    }*/
-    
-
+userRouter.put("/user/:id",async (req,res)=>{
+    const body = req.body
+    const id=body.id
+    const password=body.data.password
+    const email=body.data.email
+    console.log(body)
+    const filter = { _id: id };
+    const update = { password: password, email:email };
+    //const email=body.
+    await User.updateOne(filter,update)
+    const user = await User.findOne(filter);
+    console.log(user)
+    return res.send(user)
 });
 
 
@@ -77,10 +75,11 @@ userRouter.get("/user",async (req,res)=>{
 });
 
 userRouter.get("/user/:id",async (req,res)=>{
-    const id=req.body.id;
-    console.log("Entere")
+    const id=req.params.id;
+    console.log(req.body)
+    console.log(req.params)
     try {
-        const user = await User.findOne({id});
+        const user = await User.findOne({_id:id});
         console.log(user)
         res.send(user)
     }catch (e) {
