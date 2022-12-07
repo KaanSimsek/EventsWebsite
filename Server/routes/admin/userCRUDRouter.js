@@ -2,7 +2,7 @@ const express=require("express");
 const userRouter=express.Router()
 var mongoose = require('mongoose');
 const User = mongoose.model("UserInfo");
-
+const bcrypt = require("bcryptjs");
 userRouter.delete("/user",async (req,res)=>{
     const email=req.body.email;
     await User.remove({ email: email}, ()=>{console.log('error')});
@@ -19,19 +19,20 @@ userRouter.post("/user",async (req,res)=>{
     
         if (oldUser) {
             console.log("User exists");
-          return res.json({ error: "User Exists" });
+            return res.json({ error: "User Exists" });
         }
         if(password.length<=0 || password.length>10){
             console.log("Invalid password");
             return res.json({ error: "invalid-password" });
         }
-        await User.create({
+        const user=await User.create({
           name:name,
           username:username,
           email:email,
           password: encryptedPassword,
         });
-        return res.send({ status: "ok" });
+        
+        return res.send(user);
       } catch (error) {
         return res.send({ status: "error" });
       }
