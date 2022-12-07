@@ -2,6 +2,7 @@ const express=require("express");
 const eventRouter=express.Router()
 var mongoose = require('mongoose');
 const Event = mongoose.model("EventInfo");
+const Venue = mongoose.model("VenueInfo")
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 eventRouter.use(cors());
@@ -69,12 +70,10 @@ eventRouter.put("/event/:id",async (req,res)=>{
 
 
 eventRouter.get("/event",async (req,res)=>{
-    try {
+   
         const event = await Event.find();
         res.send(event)
-    }catch (e) {
-        res.send(e);
-    }
+
 });
 
 eventRouter.get("/event/:id",async (req,res)=>{

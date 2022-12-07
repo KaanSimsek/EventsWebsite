@@ -9,17 +9,21 @@ export default {
     let url=""
     if (resource==="User List"){
       url=apiUrl+"/user"
+      return httpClient(url).then(({ headers, json }) => ({
+        data: json.map((resource) => ({ ...resource, id: resource._id })),
+        total: parseInt(json["length"], 10),
+      }));
     }
 
     else if(resource==="Event List"){
       url=apiUrl+"/event"
+      return httpClient(url).then(({ headers, json }) => ({
+        data: json.map((resource) => ({ ...resource, id: resource._id })),
+        total: parseInt(json["length"], 10),
+      }));
     }
+    return
     
-    console.log(params);
-    return httpClient(url).then(({ headers, json }) => ({
-      data: json.map((resource) => ({ ...resource, id: resource._id })),
-      total: parseInt(json["length"], 10),
-    }));
   },
   getOne: (resource, params) =>{
     let url=""
