@@ -143,7 +143,7 @@ export default {
     }
 
     else if(resource==="Venue List"){
-      url=apiUrl+"/venue"
+      url=apiUrl+"/venue/delete"
     }
     console.log("Hiii");
     return httpClient(url, {
