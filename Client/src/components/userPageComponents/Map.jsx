@@ -1,5 +1,5 @@
 import { useMemo, useCallback, useRef } from "react";
-import { GoogleMap, Marker } from "@react-google-maps/api";
+import { GoogleMap, MarkerF } from "@react-google-maps/api";
 
 export default function Map(){
     const mapRef = useRef();
@@ -16,7 +16,7 @@ export default function Map(){
             mapContainerClassName="map-container"
             options={options}
             onLoad={onLoad}>
-            <Marker position={center}/>
+            <MarkerF position={center} title={"Hello World!"}/>
         </GoogleMap>
     )
 }
