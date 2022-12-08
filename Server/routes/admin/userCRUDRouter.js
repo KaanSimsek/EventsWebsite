@@ -62,7 +62,6 @@ userRouter.put("/user/:id",async (req,res)=>{
     const id=body.id
     const password=await bcrypt.hash(body.data.password,10);
     const email=body.data.email
-    console.log(body)
     const filter = { _id: id };
     const update = { password: password, email:email };
     //const email=body.

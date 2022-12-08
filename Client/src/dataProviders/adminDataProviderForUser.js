@@ -9,20 +9,19 @@ export default {
     let url=""
     if (resource==="User List"){
       url=apiUrl+"/user"
-      return httpClient(url).then(({ headers, json }) => ({
-        data: json.map((resource) => ({ ...resource, id: resource._id })),
-        total: parseInt(json["length"], 10),
-      }));
     }
 
     else if(resource==="Event List"){
       url=apiUrl+"/event"
-      return httpClient(url).then(({ headers, json }) => ({
-        data: json.map((resource) => ({ ...resource, id: resource._id })),
-        total: parseInt(json["length"], 10),
-      }));
     }
-    return
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
+    }
+    return httpClient(url).then(({ headers, json }) => ({
+      data: json.map((resource) => ({ ...resource, id: resource._id })),
+      total: parseInt(json["length"], 10),
+    }));
     
   },
   getOne: (resource, params) =>{
@@ -33,6 +32,10 @@ export default {
 
     else if(resource==="Event List"){
       url=apiUrl+"/event"
+    }
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
     }
     console.log(params.id)
     return httpClient(`${url}/${params.id}`).then(({ json }) => ({
@@ -77,6 +80,10 @@ export default {
     else if(resource==="Event List"){
       url=apiUrl+"/event"
     }
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
+    }
     console.log(params.id)
     return httpClient(`${url}/${params.id}`, {
       method: 'PUT',
@@ -91,6 +98,10 @@ export default {
 
     else if(resource==="Event List"){
       url=apiUrl+"/events"
+    }
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
     }
     const query = {
       filter: JSON.stringify({ id: params.ids }),
@@ -110,6 +121,10 @@ export default {
     else if(resource==="Event List"){
       url=apiUrl+"/event"
     }
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
+    }
     return httpClient(url, {
       method: 'POST',
       body: JSON.stringify(params.data),
@@ -125,6 +140,10 @@ export default {
 
     else if(resource==="Event List"){
       url=apiUrl+"/event/delete"
+    }
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
     }
     console.log(params.id)
     return httpClient(url, {
@@ -144,6 +163,11 @@ export default {
     else if(resource==="Event List"){
       url=apiUrl+"/events/delete"
     }
+
+    else if(resource==="Venue List"){
+      url=apiUrl+"/venue"
+    }
+    
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };

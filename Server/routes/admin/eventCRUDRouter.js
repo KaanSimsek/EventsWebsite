@@ -2,7 +2,6 @@ const express=require("express");
 const eventRouter=express.Router()
 var mongoose = require('mongoose');
 const Event = mongoose.model("EventInfo");
-const Venue = mongoose.model("VenueInfo")
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 eventRouter.use(cors());
@@ -56,11 +55,13 @@ eventRouter.post("/event",async (req,res)=>{
 eventRouter.put("/event/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
-    const password=await bcrypt.hash(body.data.password,10);
-    const email=body.data.email
     console.log(body)
+    const update={title: body.data.title,
+    dateTime: body.data.dateTime,
+    description: body.data.description,
+    presenter: body.data.presenter,
+    price: body.data.price}
     const filter = { _id: id };
-    const update = { password: password, email:email };
     //const email=body.
     await Event.updateOne(filter,update)
     const event = await Event.findOne(filter);
@@ -78,11 +79,8 @@ eventRouter.get("/event",async (req,res)=>{
 
 eventRouter.get("/event/:id",async (req,res)=>{
     const id=req.params.id;
-    console.log(req.body)
-    console.log(req.params)
     try {
         const event = await Event.findOne({_id:id});
-        console.log(event)
         res.send(event)
     }catch (e) {
         res.send(e);

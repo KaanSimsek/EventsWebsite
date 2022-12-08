@@ -5,8 +5,7 @@ const VenueSchema = new mongoose.Schema({
     venueName: {type: String, required: true},
     latitude: {type: Number, required: true},
     longitude: {type: Number, required: true},
-  },
-  {colection:"VenueInfo"}
+  }
 );
 
 mongoose.model("VenueInfo", VenueSchema);
