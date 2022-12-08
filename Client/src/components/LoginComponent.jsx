@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect,useRef } from 'react'
-function LoginComponent() {
+
+export default function LoginComponent() {
     const [email,setEmail] = useState("")
     const [password, setPassword] = useState("")
     const handleSubmit=(e)=>{
@@ -79,5 +80,3 @@ function LoginComponent() {
     </form>
   )
 }
-
-export default LoginComponent

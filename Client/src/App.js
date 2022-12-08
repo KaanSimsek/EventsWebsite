@@ -6,6 +6,7 @@ import AdminLogIn from './components/AdminLogIn'
 import UserPage from "./components/UserPage"
 import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
+
 function App() {
   return (
 
@@ -14,13 +15,13 @@ function App() {
       <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
-              <Route path='/' element={<LoginComponent></LoginComponent>}></Route>
-              <Route path='/sign-in' element={<LoginComponent></LoginComponent>}></Route>
-              <Route path='/sign-up' element={<RegisterComponent></RegisterComponent>}></Route>
-              <Route path='/admin-log-in' element={<AdminLogIn></AdminLogIn>}></Route>
-              <Route path='/admin-page/*' element={<AdminPage></AdminPage>}></Route>
-              <Route element={<PrivateRoutes></PrivateRoutes>}>
-                  <Route path="/user-page"  element={<UserPage></UserPage>}></Route>
+              <Route path='/' element={<LoginComponent/>}/>
+              <Route path='/sign-in' element={<LoginComponent/>}/>
+              <Route path='/sign-up' element={<RegisterComponent/>}/>
+              <Route path='/admin-log-in' element={<AdminLogIn/>}/>
+              <Route path='/admin-page/*' element={<AdminPage/>}/>
+              <Route element={<PrivateRoutes />}>
+                  <Route path="/user-page"  element={<UserPage/>}/>
               </Route>
             </Routes>
           </div>
