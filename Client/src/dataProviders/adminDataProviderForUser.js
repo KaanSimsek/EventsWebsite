@@ -145,7 +145,7 @@ export default {
     else if(resource==="Venue List"){
       url=apiUrl+"/venue"
     }
-    console.log(params.id)
+    console.log("Hiii");
     return httpClient(url, {
       method: 'POST',
       body: JSON.stringify(params),
@@ -167,7 +167,7 @@ export default {
     else if(resource==="Venue List"){
       url=apiUrl+"/venue"
     }
-    
+
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };

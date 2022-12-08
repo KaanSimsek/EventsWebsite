@@ -9,18 +9,16 @@ eventRouter.use(cors());
 
 eventRouter.post("/venue/delete",async (req,res)=>{
     console.log("Entered")
-    const eventId=req.body.id;
-    const email=req.body.previousData.email;
-    const eventToDelete = await Venue.findOne({email});
-    console.log(eventToDelete)
-    await Venue.findOneAndRemove({email});
+    const venueID=req.body.previousData.venueID;
+    const venueToDelete = await Venue.findOne({venueID});
+    console.log(venueToDelete)
+    await Venue.findOneAndRemove({venueID});
     console.log("Before return")
-    return res.send(eventToDelete);
+    return res.send(venueToDelete);
 
 });
 
 eventRouter.post("/venues/delete",async(req,res)=>{
-    console.log(req.body.ids)
     const ids=req.body.ids
     ids.forEach(async (id)=>{
         await Venue.findOneAndRemove({_id:id});
@@ -31,7 +29,7 @@ eventRouter.post("/venues/delete",async(req,res)=>{
 eventRouter.post("/venue",async (req,res)=>{
     const {venueName, latitude,longitude} = req.body;
     
-    try {
+
     const biggestId=await Venue.find().sort({venueID:-1})
     const venueID=biggestId[0]['venueID']
     const venue = await Venue.create({
@@ -41,17 +39,13 @@ eventRouter.post("/venue",async (req,res)=>{
         longitude:longitude,
     })
     res.send(venue)
-    }catch (error) {
-        console.log("Error")
-    return res.send({ status: "error" });
-    }
+
 
 });
 
 eventRouter.put("/venue/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
-    console.log(body)
     const update={title: body.data.title,
     dateTime: body.data.dateTime,
     description: body.data.description,
@@ -61,7 +55,6 @@ eventRouter.put("/venue/:id",async (req,res)=>{
     //const email=body.
     await Venue.updateOne(filter,update)
     const venue = await Venue.findOne(filter);
-    console.log(venue)
     return res.send(venue)
 });
 
@@ -69,7 +62,6 @@ eventRouter.put("/venue/:id",async (req,res)=>{
 eventRouter.get("/venue",async (req,res)=>{
    
         const venue = await Venue.find();
-        console.log(venue)
         res.send(venue)
 
 });

@@ -8,11 +8,10 @@ eventRouter.use(cors());
 
 eventRouter.post("/event/delete",async (req,res)=>{
     console.log("Entered")
-    const eventId=req.body.id;
-    const email=req.body.previousData.email;
-    const eventToDelete = await Event.findOne({email});
+    const eventID=req.body.previousData.eventID;
+    const eventToDelete = await Event.findOne({eventID});
     console.log(eventToDelete)
-    await Event.findOneAndRemove({email});
+    await Event.findOneAndRemove({eventID});
     console.log("Before return")
     return res.send(eventToDelete);
 
