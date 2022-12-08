@@ -31,6 +31,7 @@ function AdminPage() {
         <Resource
                 name="Venue List"
                 list={VenuesList}
+                edit={VenuesEdit}
                 create={CreateNewVenue}
         />
       </Admin>

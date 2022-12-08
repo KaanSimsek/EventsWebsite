@@ -1,13 +1,13 @@
 const express=require("express");
-const eventRouter=express.Router()
+const venueRouter=express.Router()
 var mongoose = require('mongoose');
 
 const Venue = mongoose.model("VenueInfo");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
-eventRouter.use(cors());
+venueRouter.use(cors());
 
-eventRouter.post("/venue/delete",async (req,res)=>{
+venueRouter.post("/venue/delete",async (req,res)=>{
     console.log("Entered")
     const venueID=req.body.previousData.venueID;
     const venueToDelete = await Venue.findOne({venueID});
@@ -18,7 +18,7 @@ eventRouter.post("/venue/delete",async (req,res)=>{
 
 });
 
-eventRouter.post("/venues/delete",async(req,res)=>{
+venueRouter.post("/venues/delete",async(req,res)=>{
     const ids=req.body.ids
     ids.forEach(async (id)=>{
         await Venue.findOneAndRemove({_id:id});
@@ -26,7 +26,7 @@ eventRouter.post("/venues/delete",async(req,res)=>{
     console.log("Entered to multiple delete")
 });
 
-eventRouter.post("/venue",async (req,res)=>{
+venueRouter.post("/venue",async (req,res)=>{
     const {venueName, latitude,longitude} = req.body;
     
 
@@ -43,7 +43,7 @@ eventRouter.post("/venue",async (req,res)=>{
 
 });
 
-eventRouter.put("/venue/:id",async (req,res)=>{
+venueRouter.put("/venue/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
     const update={title: body.data.title,
@@ -59,14 +59,14 @@ eventRouter.put("/venue/:id",async (req,res)=>{
 });
 
 
-eventRouter.get("/venue",async (req,res)=>{
+venueRouter.get("/venue",async (req,res)=>{
    
         const venue = await Venue.find();
         res.send(venue)
 
 });
 
-eventRouter.get("/venue/:id",async (req,res)=>{
+venueRouter.get("/venue/:id",async (req,res)=>{
     const id=req.params.id;
     try {
         const venue = await Venue.findOne({_id:id});
@@ -77,4 +77,4 @@ eventRouter.get("/venue/:id",async (req,res)=>{
 });
 
 
-module.exports=eventRouter;
+module.exports=venueRouter;
