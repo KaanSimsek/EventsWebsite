@@ -2,7 +2,6 @@ const express=require("express");
 const eventRouter=express.Router()
 var mongoose = require('mongoose');
 const Event = mongoose.model("EventInfo");
-const bcrypt = require("bcryptjs");
 const cors = require("cors");
 eventRouter.use(cors());
 

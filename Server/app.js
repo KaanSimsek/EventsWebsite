@@ -46,6 +46,8 @@ db.once('open', function () {
     const userCRUDRouter=require('./routes/admin/userCRUDRouter');
     const eventCRUDRouter=require('./routes/admin/eventCRUDRouter');
     const venueCRUDRouter=require('./routes/admin/venueCRUDRouter');
+    const favLocationsRouter = require('./routes/favLocationsRouter');
+
     console.log("Connection ");
    
     const User = mongoose.model("UserInfo");
@@ -66,10 +68,12 @@ db.once('open', function () {
       }
   }
   //connet();
-    
+    app.use('/favLoc',favLocationsRouter)
     app.use('/admin',userCRUDRouter)
     app.use('/admin',eventCRUDRouter)
     app.use('/admin',venueCRUDRouter)
+    
+
     app.post("/login-user",async (req,res)=>{
         const { email, password } = req.body;
     
