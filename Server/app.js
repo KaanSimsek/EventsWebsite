@@ -109,6 +109,7 @@ db.once('open', function () {
           username:username,
           email:email,
           password: encryptedPassword,
+          favLocations:[],
         });
         return res.send({ status: "ok" });
       } catch (error) {
