@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect,useRef } from 'react'
 
 export default function LoginComponent() {
-    const [email,setEmail] = useState("")
+    const [username,setUsername] = useState("")
     const [password, setPassword] = useState("")
     const handleSubmit=(e)=>{
       e.preventDefault();
@@ -15,7 +15,7 @@ export default function LoginComponent() {
               "Access-Control-Allow-Origin": "*",
             },
             body: JSON.stringify({
-              email,
+              username,
               password,
             }),
           })
@@ -37,12 +37,12 @@ export default function LoginComponent() {
     <form onSubmit={handleSubmit}>
         <h3>Sign In</h3>
         <div className="mb-3">
-          <label>Email address</label>
+          <label>Username</label>
           <input
-            type="email"
+            type="username"
             className="form-control"
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value )}
+            placeholder="Enter username"
+            onChange={(e) => setUsername(e.target.value )}
           />
         </div>
         <div className="mb-3">

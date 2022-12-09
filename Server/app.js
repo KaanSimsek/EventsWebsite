@@ -78,15 +78,15 @@ db.once('open', function () {
 
 
     app.post("/login-user",async (req,res)=>{
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
         if (!user) {
             return res.json({ error: "User Not found" });
         }
         if (await bcrypt.compare(password, user.password)) {
             console.log(process.env.ACCESS_TOKEN_SECRET)
-            const token = jwt.sign({ email: user.email,isUser:true }, JWT_SECRET);
+            const token = jwt.sign({ username: user.username,isUser:true }, JWT_SECRET);
             if (res.status(201)) {
                 return res.json({ status: "ok", data: token });
             } else {
@@ -101,7 +101,7 @@ db.once('open', function () {
         const { name, username, email, password } = req.body;
         const encryptedPassword = await bcrypt.hash(password, 10);
         try {
-            const oldUser = await User.findOne({ email });
+            const oldUser = await User.findOne({ username });
 
             if (oldUser) {
                 console.log("User exists");
@@ -125,8 +125,8 @@ db.once('open', function () {
     });
 
     app.post("/login-admin",async (req,res)=>{
-        const { email, password } = req.body;
-        const admin = await Admin.findOne({ email });
+        const { username, password } = req.body;
+        const admin = await Admin.findOne({ username });
         if (!admin) {
             console.log("Admin not found");
             return res.json({ error: "User Not found" });
