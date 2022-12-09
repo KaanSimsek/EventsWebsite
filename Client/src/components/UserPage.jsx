@@ -1,15 +1,14 @@
-import { useLoadScript } from '@react-google-maps/api'
+import { useLoadScript } from '@react-google-maps/api';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import AppBar from '@mui/material/AppBar'
+import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import Map from './userPageComponents/Map'
-import EventList from './userPageComponents/EventList'
+import Map from './userPageComponents/Map';
 
 const mdTheme = createTheme();
 
@@ -51,25 +50,7 @@ export default function UserPage() {
             >
                 <Toolbar />
                 <Container maxWidth="xlg" sx={{ mt: 4, mb: 4}}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} md={4} lg={3}>
-                            <Paper sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: "85vh",
-                            }}>
-                                <EventList/>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} md={8} lg={9}>
-                            <Paper sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: "85vh",}}>
-                                <Map />
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                    <Map />
                 </Container>
             </Box>
         </Box>
