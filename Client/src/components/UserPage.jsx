@@ -8,6 +8,8 @@ import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Map from './userPageComponents/Map';
 
 const mdTheme = createTheme();
@@ -17,6 +19,11 @@ export default function UserPage() {
         googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     });
     if (!isLoaded) return <div>Loading...</div>;
+
+    const handleLogout = () => {
+        window.sessionStorage.setItem("auth", null);
+        window.location.href = "/";
+    }
 
     return (
     <ThemeProvider theme={mdTheme}>
@@ -33,6 +40,21 @@ export default function UserPage() {
                     >
                         Hi, {window.sessionStorage.getItem("username")}
                     </Typography>
+                    <Button size="large" aria-label="Logout" onClick={handleLogout}
+                                sx={{background:"white",
+                                    ':hover': {
+                                        bgcolor: '#bdbdbd',
+                                        color: 'white',
+                                    },}}>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            sx={{ flexGrow: 1, mr: 1}}
+                        >
+                            Logout
+                        </Typography>
+                        <LogoutIcon />
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Box
