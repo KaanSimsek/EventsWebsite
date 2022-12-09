@@ -40,7 +40,7 @@ userRouter.post("/",async (req,res)=>{
         res.send(user.favLocations)//Send success message
     }
     else{
-        res.send("Can not found")//venue can not be found
+        res.send("Venue not found")//venue can not be found
     }
 });
 
@@ -57,11 +57,11 @@ userRouter.post("/delete",async (req,res)=>{
             locations.remove(loc)
             user.save()
             console.log(loc)
-            res.send("success"+loc+" removed from "+userName)
+            res.send("Successfully removed "+loc+" from "+userName+"'s favourite list.")
         }
     })
     console.log(venue)
-    res.send("Can not find")
+    res.send("Venue not found")
 });
 
 
