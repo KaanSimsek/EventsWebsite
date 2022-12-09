@@ -15,7 +15,6 @@ const mdTheme = createTheme();
 export default function UserPage() {
     const {isLoaded} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-        libraries: ['places'],
     });
     if (!isLoaded) return <div>Loading...</div>;
 
@@ -30,9 +29,9 @@ export default function UserPage() {
                         variant="h3"
                         color="inherit"
                         noWrap
-                        sx={{ flexGrow: 1 }}
+                        sx={{ flexGrow: 1 , display: 'flex'}}
                     >
-                        Map
+                        Hi, {window.sessionStorage.getItem("username")}
                     </Typography>
                 </Toolbar>
             </AppBar>

@@ -26,6 +26,7 @@ export default function LoginComponent() {
                 alert("login successful");
                 window.sessionStorage.setItem("token", data.data);
                 window.sessionStorage.setItem("auth",JSON.stringify({"token":true}));
+                window.sessionStorage.setItem("username",username);
                 window.location.href = "./user-page";
               }
               else{
