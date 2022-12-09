@@ -28,6 +28,7 @@ function RegisterComponent() {
               console.log(data, "userRegister");
               if (data.status === "ok") {
                 alert("login successful");
+                window.location.href = "./sign-in";
               }
               else if(data.status==="User Exists"){
                 alert("user exist");
