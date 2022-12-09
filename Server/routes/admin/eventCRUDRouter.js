@@ -69,7 +69,6 @@ eventRouter.put("/event/:id",async (req,res)=>{
 
 
 eventRouter.get("/event",async (req,res)=>{
-
     const event = await Event.find();
     res.send(event)
 
@@ -79,6 +78,16 @@ eventRouter.get("/event/:id",async (req,res)=>{
     const id=req.params.id;
     try {
         const event = await Event.findOne({_id:id});
+        res.send(event)
+    }catch (e) {
+        res.send(e);
+    }
+});
+
+eventRouter.get("/event/query/:venueID", async (req,res) => {
+    const venueID = req.params.venueID;
+    try{
+        const event = await Event.find({venueID:venueID});
         res.send(event)
     }catch (e) {
         res.send(e);

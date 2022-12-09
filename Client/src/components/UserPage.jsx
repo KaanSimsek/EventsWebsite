@@ -41,11 +41,11 @@ export default function UserPage() {
                         Hi, {window.sessionStorage.getItem("username")}
                     </Typography>
                     <Button size="large" aria-label="Logout" onClick={handleLogout}
-                                sx={{background:"white",
-                                    ':hover': {
-                                        bgcolor: '#bdbdbd',
-                                        color: 'white',
-                                    },}}>
+                            sx={{background:"white",
+                                ':hover': {
+                                bgcolor: '#bdbdbd',
+                                    color: 'white',
+                                },}}>
                         <Typography
                             variant="h5"
                             noWrap

@@ -10,3 +10,7 @@
 .MuiTablePagination-caption {
   display: none;
 }
+
+.data-grid-header{
+  font-size: medium;
+}

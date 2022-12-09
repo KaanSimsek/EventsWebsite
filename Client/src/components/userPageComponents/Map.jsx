@@ -6,8 +6,8 @@ import { DataGrid } from '@mui/x-data-grid';
 
 // data grid columns header format
 const columns = [
-    {field: 'venueName', headerName: 'Venue', flex: 1, minWidth: 150},
-    {field: 'venueID', headerName: 'ID'},
+    {field: 'venueName', headerName: 'Venue', flex: .6, headerClassName: 'data-grid-header',},
+    {field: 'eventNum', headerName: '# of Events',flex: .4, headerClassName: 'data-grid-header',},
 ]
 
 export default function Map(){
@@ -25,8 +25,17 @@ export default function Map(){
     useEffect(() => {
         fetch('http://localhost:4000/user/api/venue')
             .then((data) => data.json())
-            .then((data) => setVenue(data))
+            .then((data) => {
+                // count # of event for venues
+                data.forEach(item => {
+                    fetch('http://localhost:4000/user/api/event/query/' + item.venueID)
+                        .then((data) => data.json())
+                        .then((data) => {item.eventNum = data.length})
+                })
+                setVenue(data)
+            })
     },[])
+
 
     //const [message, setMessage] = useState('');
 

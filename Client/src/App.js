@@ -6,8 +6,12 @@ import AdminLogIn from './components/AdminLogIn'
 import UserPage from "./components/UserPage"
 import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
+import {useEffect} from "react";
 
 function App() {
+  useEffect(() => {
+    document.title = 'Social Map of Events';
+  }, []);
   return (
 
     <Router>
