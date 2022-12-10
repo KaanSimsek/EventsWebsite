@@ -130,7 +130,8 @@ db.once('open', function () {
         }
         if (await bcrypt.compare(password, admin.password)) {
           console.log("Okay");
-          return res.send({ status: "ok" });
+          const token={ username: admin.username,email:admin.email }
+          return res.json({ status: "ok", data: token });
         }
         else{
           console.log("Invalid password");

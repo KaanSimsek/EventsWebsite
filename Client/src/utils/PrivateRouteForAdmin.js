@@ -2,8 +2,8 @@ import { Outlet, Navigate } from "react-router-dom";
 
 
 const PrivateRoutesForAdmin=()=>{
-    let auth=window.sessionStorage.getItem("auth_admin")
-    
+    let auth=window.sessionStorage.getItem("admin-auth")
+    console.log("auth->"+auth)
     if(auth){
         console.log(auth['token'])
         console.log("admin-auth"+auth)

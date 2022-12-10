@@ -26,6 +26,9 @@ function AdminLogIn() {
               console.log(data, "adminRegister");
               if (data.status === "ok") {
                 alert("login successful");
+                window.sessionStorage.setItem("token", data.data);
+                window.sessionStorage.setItem("admin-auth",JSON.stringify({"token":true}));
+                window.location.href = "./admin-page";
               }
               else{
                 alert("Unsuccesfull");
