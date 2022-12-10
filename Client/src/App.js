@@ -6,6 +6,7 @@ import AdminLogIn from './components/AdminLogIn'
 import UserPage from "./components/UserPage"
 import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
+import PrivateRoutesForAdmin from './utils/PrivateRouteForAdmin';
 function App() {
   return (
 
@@ -18,7 +19,9 @@ function App() {
               <Route path='/sign-in' element={<LoginComponent></LoginComponent>}></Route>
               <Route path='/sign-up' element={<RegisterComponent></RegisterComponent>}></Route>
               <Route path='/admin-log-in' element={<AdminLogIn></AdminLogIn>}></Route>
-              <Route path='/admin-page/*' element={<AdminPage></AdminPage>}></Route>
+              <Route element={<PrivateRoutesForAdmin></PrivateRoutesForAdmin>}>
+                  <Route path='/admin-page/*' element={<AdminPage></AdminPage>}></Route>
+              </Route>
               <Route element={<PrivateRoutes></PrivateRoutes>}>
                   <Route path="/user-page"  element={<UserPage></UserPage>}></Route>
               </Route>

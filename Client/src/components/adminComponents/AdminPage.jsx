@@ -10,11 +10,13 @@ import VenuesEdit from './VenuesEdit'
 import CreateNewUser from './CreateNewUser'
 import CreateNewEvent from './CreateNewEvent'
 import CreateNewVenue from './createNewVenue'
+import MyLayout from './MyLayout'
 function AdminPage() {
   
     return (
       
-      <Admin basename="/admin-page" dataProvider={userDataProvider} >
+      <Admin layout = {MyLayout} basename="/admin-page" dataProvider={userDataProvider} >
+        
         <Resource
                 name="User List"
                 list={UsersList}
@@ -34,6 +36,7 @@ function AdminPage() {
                 edit={VenuesEdit}
                 create={CreateNewVenue}
         />
+        
       </Admin>
     )
 }
