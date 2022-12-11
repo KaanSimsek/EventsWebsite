@@ -6,6 +6,7 @@ import AdminLogIn from './components/AdminLogIn'
 import UserPage from "./components/UserPage"
 import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
+import LocationPage from './components/LocationComponents';
 import {useEffect} from "react";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route path='/admin-page/*' element={<AdminPage/>}/>
               <Route element={<PrivateRoutes />}>
                   <Route path="/user-page"  element={<UserPage/>}/>
+                  <Route path="/location-page" element={<LocationPage/>}/>
               </Route>
             </Routes>
           </div>
