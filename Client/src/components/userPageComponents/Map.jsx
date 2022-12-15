@@ -20,8 +20,8 @@ export default function Map(){
     }),[]);
     const onLoad = useCallback((map) => (mapRef.current = map),[]);
 
-    const handleFetchData = async () => {
-        await fetch('http://localhost:4000/user/api/venue')
+    const handleFetchData = () => {
+        fetch('http://localhost:4000/user/api/venue')
             .then((data) => data.json())
             .then((data) => {
                 // count # of event for venues

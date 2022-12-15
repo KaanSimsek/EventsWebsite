@@ -6,36 +6,32 @@ import AdminLogIn from './components/AdminLogIn'
 import UserPage from "./components/UserPage"
 import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
-import LocationPage from './components/LocationComponents';
-import {useEffect} from "react";
-
+import PrivateRoutesForAdmin from './utils/PrivateRouteForAdmin';
 function App() {
-  useEffect(() => {
-    document.title = 'Social Map of Events';
-  }, []);
-  return (
+    return (
 
-    <Router>
-    <div className='App'>
-      <div className="auth-wrapper">
-          <div className="auth-inner">
-            <Routes>
-              <Route path='/' element={<LoginComponent/>}/>
-              <Route path='/sign-in' element={<LoginComponent/>}/>
-              <Route path='/sign-up' element={<RegisterComponent/>}/>
-              <Route path='/admin-log-in' element={<AdminLogIn/>}/>
-              <Route element={<PrivateRoutes />}>
-                  <Route path='/admin-page/*' element={<AdminPage/>}/>
-                  <Route path="/user-page"  element={<UserPage/>}/>
-                  <Route path="/location-page" element={<LocationPage/>}/>
-              </Route>
-            </Routes>
-          </div>
-      </div>
-    </div>
-    </Router>
+        <Router>
+            <div className='App'>
+                <div className="auth-wrapper">
+                    <div className="auth-inner">
+                        <Routes>
+                            <Route path='/' element={<LoginComponent></LoginComponent>}></Route>
+                            <Route path='/sign-in' element={<LoginComponent></LoginComponent>}></Route>
+                            <Route path='/sign-up' element={<RegisterComponent></RegisterComponent>}></Route>
+                            <Route path='/admin-log-in' element={<AdminLogIn></AdminLogIn>}></Route>
+                            <Route element={<PrivateRoutesForAdmin></PrivateRoutesForAdmin>}>
+                                <Route path='/admin-page/*' element={<AdminPage></AdminPage>}></Route>
+                            </Route>
+                            <Route element={<PrivateRoutes></PrivateRoutes>}>
+                                <Route path="/user-page"  element={<UserPage></UserPage>}></Route>
+                            </Route>
+                        </Routes>
+                    </div>
+                </div>
+            </div>
+        </Router>
 
-  );
+    );
 }
 
 export default App;
