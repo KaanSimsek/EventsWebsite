@@ -76,9 +76,9 @@ export default function Map(){
                         mapContainerClassName="map-container"
                         options={options}
                         onLoad={onLoad}>
-                        {Object.keys(venue).map((key, index) => {
-                            return <MarkerF key={venue[key].venueID} position={{lat: venue[key].latitude, lng: venue[key].longitude}}/>
-                        })}
+                        {Object.keys(venue).map((key, index) =>
+                            <MarkerF key={venue[key].venueID} position={{lat: venue[key].latitude, lng: venue[key].longitude}}/>
+                        )}
                     </GoogleMap>
                 </Paper>
             </Grid>
