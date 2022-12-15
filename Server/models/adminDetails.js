@@ -6,6 +6,7 @@ const AdminDetailsSchema = new mongoose.Schema(
     username: String,
     email: { type: String, unique: true },
     password: {type: String,unique:true},
+    favLocations: [{loc_name:String,loc_id:Number}]
   },
   {
     collection: "AdminInfo",

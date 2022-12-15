@@ -28,6 +28,7 @@ function RegisterComponent() {
               console.log(data, "userRegister");
               if (data.status === "ok") {
                 alert("login successful");
+                window.location.href = "./sign-in";
               }
               else if(data.status==="User Exists"){
                 alert("user exist");
@@ -51,7 +52,7 @@ function RegisterComponent() {
             <input
               type="text"
               className="form-control"
-              placeholder="First name"
+              placeholder="Name"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -61,7 +62,7 @@ function RegisterComponent() {
             <input
               type="text"
               className="form-control"
-              placeholder="Last name"
+              placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>

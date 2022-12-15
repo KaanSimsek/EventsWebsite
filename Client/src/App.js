@@ -9,6 +9,7 @@ import AdminPage from './components/adminComponents/AdminPage';
 import LocationPage from './components/LocationComponents';
 import {useEffect} from "react";
 
+import PrivateRoutesForAdmin from './utils/PrivateRouteForAdmin';
 function App() {
   useEffect(() => {
     document.title = 'Social Map of Events';
@@ -24,7 +25,9 @@ function App() {
               <Route path='/sign-in' element={<LoginComponent/>}/>
               <Route path='/sign-up' element={<RegisterComponent/>}/>
               <Route path='/admin-log-in' element={<AdminLogIn/>}/>
-              <Route path='/admin-page/*' element={<AdminPage/>}/>
+              <Route element={<PrivateRoutesForAdmin></PrivateRoutesForAdmin>}>
+                  <Route path='/admin-page/*' element={<AdminPage></AdminPage>}></Route>
+              </Route>
               <Route element={<PrivateRoutes />}>
                   <Route path="/user-page"  element={<UserPage/>}/>
                   <Route path="/location-page" element={<LocationPage/>}/>

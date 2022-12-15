@@ -126,14 +126,16 @@ db.once('open', function () {
 
     app.post("/login-admin",async (req,res)=>{
         const { username, password } = req.body;
-        const admin = await Admin.findOne({ username });
+        console.log(username)
+        const admin = await Admin.findOne({ username:username });
         if (!admin) {
             console.log("Admin not found");
             return res.json({ error: "User Not found" });
         }
         if (await bcrypt.compare(password, admin.password)) {
-            console.log("Okay");
-            return res.send({ status: "ok" });
+          console.log("Okay");
+          const token={ username: admin.username,email:admin.email }
+          return res.json({ status: "ok", data: token });
         }
         else{
             console.log("Invalid password");
@@ -145,5 +147,5 @@ db.once('open', function () {
 
 
 })
-
+ 
 app.listen(port)

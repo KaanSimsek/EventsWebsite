@@ -3,7 +3,7 @@ import {useState, useEffect,useRef } from 'react'
 function AdminLogIn() {
     
     
-    const [email,setEmail] = useState("")
+    const [username,setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     const handleSubmit=(e)=>{
@@ -17,7 +17,7 @@ function AdminLogIn() {
               "Access-Control-Allow-Origin": "*",
             },
             body: JSON.stringify({
-              email,
+              username,
               password,
             }),
           })
@@ -26,6 +26,9 @@ function AdminLogIn() {
               console.log(data, "adminRegister");
               if (data.status === "ok") {
                 alert("login successful");
+                window.sessionStorage.setItem("token", data.data);
+                window.sessionStorage.setItem("admin-auth",JSON.stringify({"token":true}));
+                window.location.href = "./admin-page";
               }
               else{
                 alert("Unsuccesfull");
@@ -37,12 +40,12 @@ function AdminLogIn() {
         <form onSubmit={handleSubmit}>
             <h3>Admin Sign In</h3>
             <div className="mb-3">
-              <label>Email address</label>
+              <label>User name</label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
-                placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value )}
+                placeholder="Enter username"
+                onChange={(e) => setUsername(e.target.value )}
               />
             </div>
             <div className="mb-3">

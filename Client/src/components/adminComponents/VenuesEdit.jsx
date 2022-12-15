@@ -2,16 +2,16 @@ import React from 'react'
 
 import { Edit,PasswordInput, SimpleForm, TextInput } from 'react-admin';
 
-function UsersEdit(props) {
+function VenuesEdit(props) {
     return (
         <Edit {...props}>
           <SimpleForm>
-            <TextInput required source="username" />
-            <TextInput required source="email" />
-            <PasswordInput required source="password"/>
+            <TextInput source="venueName" />
+            <TextInput source="latitude" />
+            <TextInput source="longitude"/>
           </SimpleForm>
         </Edit>
     );
 }
 
-export default UsersEdit
+export default VenuesEdit
