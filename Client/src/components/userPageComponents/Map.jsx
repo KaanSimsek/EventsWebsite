@@ -35,6 +35,9 @@ export default function Map(){
             })
     }
 
+    const venueIDStore = (v) =>{
+        window.sessionStorage.setItem("venueObj",JSON.stringify(v));
+    }
     // fetch venueInfo
     useEffect(() => { handleFetchData() },[])
 
@@ -77,7 +80,7 @@ export default function Map(){
                         options={options}
                         onLoad={onLoad}>
                         {Object.keys(venue).map((key, index) =>
-                            <MarkerF key={venue[key].venueID} position={{lat: venue[key].latitude, lng: venue[key].longitude}}/>
+                            <MarkerF key={venue[key].venueID} onClick={venueIDStore(venue[key])} position={{lat: venue[key].latitude, lng: venue[key].longitude}}/>
                         )}
                     </GoogleMap>
                 </Paper>

@@ -54,7 +54,9 @@ eventRouter.put("/api/event/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
     console.log(body)
-    const update={title: body.data.title,
+    const update={
+        title: body.data.title,
+        venueID: body.data.venueID,
         dateTime: body.data.dateTime,
         description: body.data.description,
         presenter: body.data.presenter,
