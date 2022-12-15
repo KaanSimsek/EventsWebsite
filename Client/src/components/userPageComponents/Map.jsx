@@ -33,6 +33,8 @@ export default function Map(){
                 setVenue(data)
                 setCenter({lat: data[0].latitude, lng: data[0].longitude})
             })
+
+            
     }
 
     // fetch venueInfo

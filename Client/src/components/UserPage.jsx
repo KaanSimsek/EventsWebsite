@@ -9,8 +9,10 @@ import AppBar from '@mui/material/AppBar';
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from '@mui/material/Button';
+import { Stack } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Map from './userPageComponents/Map';
+import FavLocations from './userPageComponents/FavLocations';
 
 const mdTheme = createTheme();
 
@@ -40,6 +42,20 @@ export default function UserPage() {
                     >
                         Hi, {window.sessionStorage.getItem("username")}
                     </Typography>
+                    <Stack direction="row" spacing={2}>
+                    <Button size="large" aria-label="fav locations" sx={{background:"white",
+                                ':hover': {
+                                bgcolor: '#bdbdbd',
+                                    color: 'white',
+                                },}}>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            sx={{ flexGrow: 1, mr: 1}}
+                        >
+                            Fav Locations
+                        </Typography>
+                    </Button>
                     <Button size="large" aria-label="Logout" onClick={handleLogout}
                             sx={{background:"white",
                                 ':hover': {
@@ -55,6 +71,8 @@ export default function UserPage() {
                         </Typography>
                         <LogoutIcon />
                     </Button>
+                    </Stack>
+                    
                 </Toolbar>
             </AppBar>
             <Box
@@ -73,7 +91,13 @@ export default function UserPage() {
                 <Container maxWidth="xlg" sx={{ mt: 4, mb: 4}}>
                     <Map />
                 </Container>
+
+                <Toolbar />
+                <Container maxWidth="xlg" sx={{ mt: 4, mb: 4}}>
+                    <FavLocations></FavLocations>
+                </Container>
             </Box>
+            
         </Box>
     </ThemeProvider>
     );

@@ -8,9 +8,10 @@ const Venue = mongoose.model("VenueInfo");
 const cors = require("cors");
 userRouter.use(cors());
 
-userRouter.get("/",async(req,res)=>{
-    const {userName}=req.body;
-    const favLocations = await User.findOne({userName}).select({favLocations:1})
+userRouter.get("/:userName",async(req,res)=>{
+    const {userName}=req.params;
+    console.log(userName)
+    const favLocations = await User.findOne({username:userName}).select({favLocations:1})
     res.send(favLocations)
 });
 
@@ -28,7 +29,7 @@ userRouter.get("/",async(req,res)=>{
 userRouter.post("/",async (req,res)=>{
     const userName=req.body.username
     const venueName = req.body.location
-    console.log(venueName)
+    console.log(req.body)
     const venue=await Venue.findOne({venueName})
     if(venue){
         const venueName=venue.venueName
