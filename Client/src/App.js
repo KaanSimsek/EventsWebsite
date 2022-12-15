@@ -7,6 +7,8 @@ import UserPage from "./components/UserPage"
 import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
 import PrivateRoutesForAdmin from './utils/PrivateRouteForAdmin';
+import LocationPage from './components/locationComponents/LocationComponents';
+
 function App() {
     return (
 
@@ -24,6 +26,7 @@ function App() {
                             </Route>
                             <Route element={<PrivateRoutes></PrivateRoutes>}>
                                 <Route path="/user-page"  element={<UserPage></UserPage>}></Route>
+                                <Route path="/location-page" element={<LocationPage/>}></Route>
                             </Route>
                         </Routes>
                     </div>
