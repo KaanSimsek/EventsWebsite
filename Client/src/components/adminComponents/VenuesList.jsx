@@ -6,17 +6,17 @@ import {
     EditButton,
     DeleteButton,
     EmailField,
+    DateField,
 } from 'react-admin';
-function UsersList(props) {
+function VenuesList(props) {
     //console.log(props)
     return (
         <List {...props}>
             <Datagrid>
-                <TextField source="id" />
-                <TextField source="username" />
-                <TextField source="name" />
-                <EmailField source="email"/>
-                <TextField source="password"/>
+                <TextField source="venueID"/>
+                <TextField source="venueName" />
+                <TextField source="latitude" />
+                <TextField source="longitude"/>
                 <EditButton label="Edit" />
                 <DeleteButton label="Delete"/>
             </Datagrid>
@@ -24,4 +24,4 @@ function UsersList(props) {
     );
 }
 
-export default UsersList
+export default VenuesList

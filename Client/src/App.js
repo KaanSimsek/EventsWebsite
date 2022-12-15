@@ -24,8 +24,8 @@ function App() {
               <Route path='/sign-in' element={<LoginComponent/>}/>
               <Route path='/sign-up' element={<RegisterComponent/>}/>
               <Route path='/admin-log-in' element={<AdminLogIn/>}/>
-              <Route path='/admin-page/*' element={<AdminPage/>}/>
               <Route element={<PrivateRoutes />}>
+                  <Route path='/admin-page/*' element={<AdminPage/>}/>
                   <Route path="/user-page"  element={<UserPage/>}/>
                   <Route path="/location-page" element={<LocationPage/>}/>
               </Route>
