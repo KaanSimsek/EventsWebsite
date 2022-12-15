@@ -1,23 +1,27 @@
 import {useMemo, useState, useEffect} from "react";
+import { useParams, useLocation } from 'react-router-dom';
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import Paper from "@mui/material/Paper";
-import { Typography } from "@mui/material";
-import EventInfo from "./InfoCards";
+import { Paper, Box, Card, CardContent, Typography } from '@mui/material';
+import Event from './InfoCard'
 
 function LocationPage() {
-        const [ events, setEvents ] = useState('')
+        const { id } = useParams()
+        const [ events, setEvents ] = useState([])
+        const [ center, setCenter ] = useState('')
+        const options = useMemo(()=>({
+            disableDefaultUI: true,
+        }),[]);
 
-        const center = useMemo(() => ({lat: 22.4196299, lng: 114.2045719}), []);
+        const handleFetchData = () => {
+            fetch('http://localhost:4000/user/api/venue')
+                .then((data) => data.json())
+                .then((data) => setCenter({lat: data[0].latitude, lng: data[0].longitude}))
+                .catch((err) => {console.log(err)})
 
-        const fetchEvents = async () => {
-            try {
-                const response = await fetch('http://localhost:4000/user/api/event/')
-                const events = await response.json()
-                setEvents(events)
-                console.log(events)
-            } catch(error) {
-                console.log(error)
-            }
+            fetch(`http://localhost:4000/user/api/event/query/${id}`)
+                .then((data) => data.json())
+                .then((data) => setEvents(data))
+                .catch((err) => {console.log(err)})
             // await fetch('http://localhost:4000/user/api/event/')
             // .then((data) => data.json())
             // .then((data) => {
@@ -25,8 +29,9 @@ function LocationPage() {
             //     console.log(events)
             // })
         }
+
         useEffect(()=>{
-            fetchEvents()
+            handleFetchData()
         }, [])
 
         // const onLoad = useCallback((map) => (mapRef.current = map),[]);
@@ -37,24 +42,31 @@ function LocationPage() {
 
         return (
             <>
-            <Paper sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                height: "85vh",}}>
-                <GoogleMap
-                    zoom={17}
-                    center={center}
-                    mapContainerClassName="map-container">
+                <Paper sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: "85vh",}}>
+                    <GoogleMap
+                        zoom={17}
+                        center={center}
+                        mapContainerClassName="map-container"
+                        options={options}>
+                        <MarkerF position={center}/>
+                    </GoogleMap>
+                </Paper>
 
-                    <MarkerF position={{lat: 22.4196299, lng: 114.2045719}}/>
-                </GoogleMap>
-            </Paper>
+                <div className='title'>
+                    <h1>Event Information</h1>
+                    <div className='underline'></div>
+                </div>
 
-            <EventInfo events={events}/>
+                <div className='event-div'>
+                    {Object.keys(events).map((key, index) => <Event event={events[key]}/>)}
+                </div>
 
-            <Typography variant="h1" display="block" gutterBottom>
-                Comment Session
-            </Typography>
+                <Typography variant="h1" display="block" gutterBottom>
+                    Comment Session
+                </Typography>
             </>
         )
 }

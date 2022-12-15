@@ -1,35 +1,31 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Paper, Box, Card, CardContent, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-const Event = ({id, dateTime, description, eventID, presenter, price, title}) => {
-
-  return <article>
-        <Box width='500px' padding='6px' border='dotted'>
-            <Card position='flex' justifyContent="center">
-                <CardContent>
-                    <Typography gutterBottom variant='h4' component="div">
-                        {title}
+const Event = (props) => {
+    const event = props.event
+    return(
+        <Card>
+            <CardContent>
+                <Typography gutterBottom variant='h4' component="div">
+                    {event.title}
+                </Typography>
+                <Typography gutterBottom variant='h5'>
+                    {event.dateTime}
                     </Typography>
-                    <Typography gutterBottom variant='h5'>
-                        {dateTime}
-                    </Typography>
-                    <Typography gutterBottom variant='h5'>
-                        {presenter}
+                <Typography gutterBottom variant='h5'>
+                        {event.presenter}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {description}
+                        {event.description}
                     </Typography>
                     <Typography gutterBottom variant='h5'>
-                        ${price}
+                        ${event.price}
                     </Typography>
 
                 </CardContent>
 
-            </Card>
-        </Box>
-
-
-  </article>;
+        </Card>
+)
 };
 
 export default Event;
