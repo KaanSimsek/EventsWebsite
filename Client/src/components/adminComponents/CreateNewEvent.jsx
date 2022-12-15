@@ -1,5 +1,5 @@
 import React from 'react'
-import { Create, DateInput, EmailField, NumberInput, PasswordInput, ReferenceInput, SelectInput, SimpleForm, TextInput } from 'react-admin';
+import { Create, DateTimeInput , EmailField, NumberInput, PasswordInput, ReferenceInput, SelectInput, SimpleForm, TextInput } from 'react-admin';
 
 function CreateNewEvent(props) {
 
@@ -10,9 +10,9 @@ function CreateNewEvent(props) {
                 <TextInput required source="title"  />
                 <TextInput required source="presenter" />
                 <NumberInput required source="venueID" />
-                <TextInput required source='description'/>
+                <TextInput source='description'/>
                 <NumberInput required source='price' />
-                <DateInput required source="dateTime" />
+                <DateTimeInput required source="dateTime" />
             </SimpleForm>
         </Create>
     );
