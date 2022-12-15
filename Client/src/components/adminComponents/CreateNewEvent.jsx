@@ -8,8 +8,8 @@ function CreateNewEvent(props) {
 
             <SimpleForm>
                 <TextInput required source="title"  />
-                <TextInput required source="presenter" />
                 <NumberInput required source="venueID" />
+                <TextInput required source="presenter" />
                 <TextInput source='description'/>
                 <NumberInput required source='price' />
                 <DateTimeInput required source="dateTime" />

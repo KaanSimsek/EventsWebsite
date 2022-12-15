@@ -8,6 +8,7 @@ import {
     EmailField,
     DateField,
 } from 'react-admin';
+
 function EventsList(props) {
     //console.log(props)
     return (
