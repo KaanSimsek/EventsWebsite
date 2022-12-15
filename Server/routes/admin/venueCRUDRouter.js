@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 venueRouter.use(cors());
 
-venueRouter.post("/venue/delete",async (req,res)=>{
+venueRouter.post("/api/venue/delete",async (req,res)=>{
     console.log("Entered")
     const venueID=req.body.previousData.venueID;
     const venueToDelete = await Venue.findOne({venueID});
@@ -18,7 +18,7 @@ venueRouter.post("/venue/delete",async (req,res)=>{
 
 });
 
-venueRouter.post("/venues/delete",async(req,res)=>{
+venueRouter.post("/api/venues/delete",async(req,res)=>{
     const ids=req.body.ids
     ids.forEach(async (id)=>{
         await Venue.findOneAndRemove({_id:id});
@@ -26,7 +26,7 @@ venueRouter.post("/venues/delete",async(req,res)=>{
     console.log("Entered to multiple delete")
 });
 
-venueRouter.post("/venue",async (req,res)=>{
+venueRouter.post("/api/venue",async (req,res)=>{
     const {venueName, latitude,longitude} = req.body;
 
 
@@ -43,7 +43,7 @@ venueRouter.post("/venue",async (req,res)=>{
 
 });
 
-venueRouter.put("/venue/:id",async (req,res)=>{
+venueRouter.put("/api/venue/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
     const update={title: body.data.title,
@@ -59,13 +59,13 @@ venueRouter.put("/venue/:id",async (req,res)=>{
 });
 
 
-venueRouter.get("/venue",async (req,res)=>{
+venueRouter.get("/api/venue",async (req,res)=>{
     const venue = await Venue.find();
     res.send(venue)
 
 });
 
-venueRouter.get("/venue/:id",async (req,res)=>{
+venueRouter.get("/api/venue/:id",async (req,res)=>{
     const id=req.params.id;
     try {
         const venue = await Venue.findOne({_id:id});

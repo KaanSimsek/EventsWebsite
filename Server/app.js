@@ -73,8 +73,8 @@ db.once('open', function () {
     app.use('/admin',userCRUDRouter)
     app.use('/admin',eventCRUDRouter)
     app.use('/admin',venueCRUDRouter)
-    app.use('/user/api', venueCRUDRouter)
-    app.use('/user/api', eventCRUDRouter)
+    app.use('/user', venueCRUDRouter)
+    app.use('/user', eventCRUDRouter)
 
 
     app.post("/login-user",async (req,res)=>{

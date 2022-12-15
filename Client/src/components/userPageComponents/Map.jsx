@@ -12,7 +12,6 @@ const columns = [
 
 export default function Map(){
     const [venue, setVenue] = useState('');
-    const [visibleMarker, setVisibleMarker] = useState(false)
     // Google Map variable initialization
     const mapRef = useRef();
     const [center, setCenter] = useState({lat: 22.4196299, lng: 114.2045719});
@@ -21,9 +20,8 @@ export default function Map(){
     }),[]);
     const onLoad = useCallback((map) => (mapRef.current = map),[]);
 
-    // fetch venueInfo
-    useEffect(() => {
-        fetch('http://localhost:4000/user/api/venue')
+    const handleFetchData = async () => {
+        await fetch('http://localhost:4000/user/api/venue')
             .then((data) => data.json())
             .then((data) => {
                 // count # of event for venues
@@ -33,8 +31,12 @@ export default function Map(){
                         .then((data) => {item.eventNum = data.length})
                 })
                 setVenue(data)
+                setCenter({lat: data[0].latitude, lng: data[0].longitude})
             })
-    },[])
+    }
+
+    // fetch venueInfo
+    useEffect(() => { handleFetchData() },[])
 
 
     //const [message, setMessage] = useState('');
@@ -42,7 +44,6 @@ export default function Map(){
     // onClick event on data grid row item
     const handleRowClick = (params) => {
         setCenter({lat: params.row.latitude, lng: params.row.longitude})
-        setVisibleMarker(true)
     };
 
     return(
@@ -75,7 +76,9 @@ export default function Map(){
                         mapContainerClassName="map-container"
                         options={options}
                         onLoad={onLoad}>
-                        <MarkerF position={center} visible={visibleMarker}/>
+                        {Object.keys(venue).map((key, index) => {
+                            return <MarkerF key={venue[key].venueID} position={{lat: venue[key].latitude, lng: venue[key].longitude}}/>
+                        })}
                     </GoogleMap>
                 </Paper>
             </Grid>
