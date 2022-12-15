@@ -1,11 +1,11 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
 
-const Event = ({id, dateTime, description, eventID, presenter, price, title}) => {
+const Event = ({id, dateTime, description, presenter, price, title}) => {
+    const [readmore, setReadmore] = useState(false)
 
-  return <article>
-        <Box width='500px' padding='6px' border='dotted'>
-            <Card position='flex' justifyContent="center">
+  return <article className='single-location'>
+            <Card position='flex' border='6px' margin='6px' >
                 <CardContent>
                     <Typography gutterBottom variant='h4' component="div">
                         {title}
@@ -17,17 +17,15 @@ const Event = ({id, dateTime, description, eventID, presenter, price, title}) =>
                         {presenter}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {description}
+                        {readmore?description: ""}
+                        <Button onClick={()=>setReadmore(!readmore)}>Read Description</Button>
                     </Typography>
                     <Typography gutterBottom variant='h5'>
                         ${price}
                     </Typography>
 
                 </CardContent>
-
             </Card>
-        </Box>
-
 
   </article>;
 };

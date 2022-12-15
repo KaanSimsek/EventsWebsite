@@ -6,6 +6,7 @@ import EventInfo from "./InfoCards";
 
 function LocationPage() {
         const [ events, setEvents ] = useState('')
+        const [ comment, setComment ] = useState('')
 
         const center = useMemo(() => ({lat: 22.4196299, lng: 114.2045719}), []);
 
@@ -18,15 +19,23 @@ function LocationPage() {
             } catch(error) {
                 console.log(error)
             }
-            // await fetch('http://localhost:4000/user/api/event/')
-            // .then((data) => data.json())
-            // .then((data) => {
-            //     setEvents(data)
-            //     console.log(events)
-            // })
         }
         useEffect(()=>{
             fetchEvents()
+        }, [])
+
+        const fetchComment = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/user/api/comments')
+                const comments = await response.json()
+                setComment(comments)
+                console.log(comments)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        useEffect(()=>{
+            fetchComment()
         }, [])
 
         // const onLoad = useCallback((map) => (mapRef.current = map),[]);
@@ -50,11 +59,8 @@ function LocationPage() {
                 </GoogleMap>
             </Paper>
 
-            <EventInfo events={events}/>
+            <EventInfo events={events} comments={comment} />
 
-            <Typography variant="h1" display="block" gutterBottom>
-                Comment Session
-            </Typography>
             </>
         )
 }

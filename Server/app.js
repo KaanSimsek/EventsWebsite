@@ -39,6 +39,7 @@ require("./models/userDetails");
 require("./models/adminDetails");
 require("./models/eventDetails");
 require("./models/venueDetails")
+require("./models/commentDetails")
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
@@ -48,6 +49,7 @@ db.once('open', function () {
     const eventCRUDRouter=require('./routes/admin/eventCRUDRouter');
     const venueCRUDRouter=require('./routes/admin/venueCRUDRouter');
     const favLocationsRouter = require('./routes/favLocationsRouter');
+    const commentRouter = require('./routes/admin/commentCRUDRouter');
 
     console.log("Connection ");
 
@@ -75,6 +77,7 @@ db.once('open', function () {
     app.use('/admin',venueCRUDRouter)
     app.use('/user', venueCRUDRouter)
     app.use('/user', eventCRUDRouter)
+    app.use('/user', commentRouter)
 
 
     app.post("/login-user",async (req,res)=>{

@@ -14,3 +14,22 @@
 .data-grid-header{
   font-size: medium;
 }
+
+.underline{
+  width: 6rem;
+  height: 0.25rem;
+  background: hsl(205, 78%, 60%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.single-location{
+  border: dotted;
+  background: #fff;
+  border-radius: 0.25rem;
+  margin: 2rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s linear;
+  justify-content: center;
+
+}
