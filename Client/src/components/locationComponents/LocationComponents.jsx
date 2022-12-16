@@ -71,6 +71,21 @@ function LocationPage() {
 
         const handleAddFav = (e) =>{
             e.preventDefault()
+            console.log(venue.venueID)
+            const username = window.sessionStorage.getItem("username")
+            fetch('http://localhost:4000/favLoc/api',{
+            method: "POST",
+            crossDomain: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+                username: username,
+                location:venue.venueID,
+            }),
+            })
         }
 
         return (

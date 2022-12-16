@@ -15,9 +15,9 @@ function FavLocations() {
     ]
     const handleFetchData= async()=>{
         const userName = window.sessionStorage.getItem("username")
-        await fetch('http://localhost:4000/favLoc/'+userName,{
+        await fetch('http://localhost:4000/favLoc/api/'+userName,{
             method: "GET",
-            crossDomain: true,
+            crossDomain: true, 
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json",
