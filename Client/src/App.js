@@ -8,6 +8,7 @@ import PrivateRoutes from "./utils/PrivateRoutes"
 import AdminPage from './components/adminComponents/AdminPage';
 import PrivateRoutesForAdmin from './utils/PrivateRouteForAdmin';
 import LocationPage from './components/locationComponents/LocationComponents';
+import FavLocations from './components/userPageComponents/FavLocations'
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                             <Route element={<PrivateRoutes></PrivateRoutes>}>
                                 <Route path="/user-page"  element={<UserPage></UserPage>}></Route>
                                 <Route path="/location-page/:id" element={<LocationPage/>}></Route>
+                                <Route path="/fav-loc" element={<FavLocations/>}></Route>
                             </Route>
                         </Routes>
                     </div>

@@ -27,9 +27,9 @@ userRouter.get("/api/",async(req,res)=>{
 
 userRouter.post("/api/",async (req,res)=>{
     const userName=req.body.username
-    const venueName = req.body.location
-    console.log(venueName)
-    const venue=await Venue.findOne({venueName})
+    const venueid = req.body.location
+    console.log(venueid)
+    const venue=await Venue.findOne({venueid})
     if(venue){
         const venueName=venue.venueName
         const venueID=venue.venueID

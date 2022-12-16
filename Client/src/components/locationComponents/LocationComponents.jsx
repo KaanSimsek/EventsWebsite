@@ -3,11 +3,23 @@ import { useParams, useLocation } from 'react-router-dom';
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { Paper, Box, Card, CardContent, Typography } from '@mui/material';
 import Event from './InfoCard'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
+import AppBar from '@mui/material/AppBar';
+import Grid from "@mui/material/Grid";
+import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+const mdTheme = createTheme();
 
 function LocationPage() {
         const { id } = useParams()
         const [ events, setEvents ] = useState([])
         const [ center, setCenter ] = useState('')
+        const [ venue, setVenue ] = useState('')
+        const [ comment, setComment] = useState('')
         const options = useMemo(()=>({
             disableDefaultUI: true,
         }),[]);
@@ -15,7 +27,10 @@ function LocationPage() {
         const handleFetchData = () => {
             fetch(`http://localhost:4000/user/api/venue/${id}`)
                 .then((data) => data.json())
-                .then((data) => setCenter({lat: data.latitude, lng: data.longitude}))
+                .then((data) => {
+                    setCenter({lat: data.latitude, lng: data.longitude})
+                    setVenue(data)
+                })
                 .catch((err) => {console.log(err)})
 
             fetch(`http://localhost:4000/user/api/event/query/${id}`)
@@ -54,8 +69,48 @@ function LocationPage() {
         });
         if (!isLoaded) return <div>Loading...</div>;
 
+        const handleAddFav = (e) =>{
+            e.preventDefault()
+            fetch('http://localhost:4000/favLoc', {
+                method: 'POST',
+                headers: new Headers(),
+                body: JSON.stringify({ communityName: communityName, body: files })
+
+            })
+        }
+
         return (
-            <>
+            <ThemeProvider theme={mdTheme}>
+                <CssBaseline />
+                <AppBar position="absolute">
+                    <Toolbar sx={{pr: '24px',}}>
+                        <Typography
+                            component="h1"
+                            variant="h3"
+                            color="inherit"
+                            noWrap
+                            sx={{ flexGrow: 1 , display: 'flex'}}
+                        >
+                            {venue.venueName}
+                        </Typography>
+                        <Button size="large"
+                                aria-label="AddFavourite"
+                                onClick={handleAddFav}
+                                sx={{background:"white",
+                                    ':hover': {
+                                        bgcolor: '#bdbdbd',
+                                        color: 'white',
+                                    },}}>
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                sx={{ flexGrow: 1, mr: 1}}
+                            >
+                                Add Favourite Location
+                            </Typography>
+                        </Button>
+                    </Toolbar>
+                </AppBar>
                 <Paper sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -81,7 +136,7 @@ function LocationPage() {
                 <Typography variant="h1" display="block" gutterBottom>
                     Comment Session
                 </Typography>
-            </>
+            </ThemeProvider>
         )
 }
 
