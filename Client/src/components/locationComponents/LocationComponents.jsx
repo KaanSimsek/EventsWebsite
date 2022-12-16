@@ -121,9 +121,7 @@ function LocationPage() {
                 </Paper>
 
                 <div className='title'>
-                    <Typography variant="h1" display="block" gutterBottom>
-                        Event Information
-                    </Typography>
+                        <h1>Event Information</h1>
                     <div className='underline'></div>
                 </div>
 
@@ -131,10 +129,8 @@ function LocationPage() {
                     {Object.keys(events).map((key, index) => <Event event={events[key]}/>)}
                 </div>
 
-                <div>
-                    <Typography variant="h1" display="block" gutterBottom>
-                        Comment Session
-                    </Typography>
+                <div className='title'>
+                        <h1>Comments</h1>
                     <div className='underline'></div>
                 </div>
 
@@ -143,9 +139,7 @@ function LocationPage() {
                 </div>
 
                 <div className='title'>
-                    <Typography variant="h1" display="block" gutterBottom>
-                        Post Your Comment
-                    </Typography>
+                        <h1>Post Your Comment</h1>
                     <div className='underline'></div>
                 </div>
 
