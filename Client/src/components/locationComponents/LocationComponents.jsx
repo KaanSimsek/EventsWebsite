@@ -1,7 +1,7 @@
 import {useMemo, useState, useEffect} from "react";
 import { useParams, useLocation } from 'react-router-dom';
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import { Paper, Box, Card, CardContent, Typography, CssBaseline, Toolbar, Container, AppBar , Grid , Button } from '@mui/material';
+import { Paper, Box, Card, CardContent, Typography, CssBaseline, Toolbar, Container, AppBar , Grid , Button, Stack } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Event from './InfoCard'
@@ -89,6 +89,7 @@ function LocationPage() {
                         >
                             {venue.venueName}
                         </Typography>
+                        <Stack direction="row" spacing={2}>
                         <Button size="large"
                                 aria-label="AddFavourite"
                                 onClick={handleAddFav}
@@ -105,6 +106,23 @@ function LocationPage() {
                                 Add Favourite Location
                             </Typography>
                         </Button>
+                        <Button size="large"
+                                aria-label="Back"
+                                href="/user-page"
+                                sx={{background:"white",
+                                    ':hover': {
+                                        bgcolor: '#bdbdbd',
+                                        color: 'white',
+                                    },}}>
+                            <Typography
+                                variant="h5"
+                                noWrap
+                                sx={{ flexGrow: 1, mr: 1}}
+                            >
+                                Back
+                            </Typography>
+                        </Button>
+                    </Stack>
                     </Toolbar>
                 </AppBar>
                 <Paper sx={{
@@ -121,9 +139,7 @@ function LocationPage() {
                 </Paper>
 
                 <div className='title'>
-                    <Typography variant="h1" display="block" gutterBottom>
-                        Event Information
-                    </Typography>
+                        <h1>Event Information</h1>
                     <div className='underline'></div>
                 </div>
 
@@ -131,10 +147,8 @@ function LocationPage() {
                     {Object.keys(events).map((key, index) => <Event event={events[key]}/>)}
                 </div>
 
-                <div>
-                    <Typography variant="h1" display="block" gutterBottom>
-                        Comment Session
-                    </Typography>
+                <div className='title'>
+                        <h1>Comments</h1>
                     <div className='underline'></div>
                 </div>
 
@@ -143,9 +157,7 @@ function LocationPage() {
                 </div>
 
                 <div className='title'>
-                    <Typography variant="h1" display="block" gutterBottom>
-                        Post Your Comment
-                    </Typography>
+                        <h1>Post Your Comment</h1>
                     <div className='underline'></div>
                 </div>
 
