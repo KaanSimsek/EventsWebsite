@@ -29,14 +29,15 @@ userRouter.get("/api/:userName",async(req,res)=>{
 userRouter.post("/api/",async (req,res)=>{
     const userName=req.body.username
     const venueID = req.body.location
-    console.log(venueID)
     const venue=await Venue.findOne({venueID:venueID})
     if(venue){
         const venueName=venue.venueName
         const venueID=venue.venueID
         const location={loc_name:venueName,loc_id:venueID}
         const user = await User.findOne({username:userName})
-        user.favLocations.push(location)
+        const exist = user.favLocations.find(obj => obj.loc_id === venueID)
+        if (!exist)
+            user.favLocations.push(location)
         user.save()
         res.send(user.favLocations)//Send success message
     }
