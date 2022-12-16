@@ -26,7 +26,7 @@ function App() {
                             </Route>
                             <Route element={<PrivateRoutes></PrivateRoutes>}>
                                 <Route path="/user-page"  element={<UserPage></UserPage>}></Route>
-                                <Route path="/location-page" element={<LocationPage/>}></Route>
+                                <Route path="/location-page/:id" element={<LocationPage/>}></Route>
                             </Route>
                         </Routes>
                     </div>

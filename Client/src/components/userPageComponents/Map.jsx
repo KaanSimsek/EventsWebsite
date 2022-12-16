@@ -1,4 +1,5 @@
 import {useMemo, useCallback, useRef, useState, useEffect} from "react";
+import {Link} from 'react-router-dom'
 import { GoogleMap, MarkerF } from "@react-google-maps/api";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -44,7 +45,12 @@ export default function Map(){
     // onClick event on data grid row item
     const handleRowClick = (params) => {
         setCenter({lat: params.row.latitude, lng: params.row.longitude})
+        handleLocationClick(params.row.venueID)
     };
+
+    const handleLocationClick = (id) =>{
+        window.location.href = "./location-page/" + id
+    }
 
     return(
         <Grid container spacing={3}>
@@ -71,13 +77,19 @@ export default function Map(){
                     flexDirection: 'column',
                     height: "85vh",}}>
                     <GoogleMap
-                        zoom={17}
+                        zoom={11}
                         center={center}
                         mapContainerClassName="map-container"
                         options={options}
                         onLoad={onLoad}>
-                        {Object.keys(venue).map((key, index) =>
-                            <MarkerF key={venue[key].venueID} position={{lat: venue[key].latitude, lng: venue[key].longitude}}/>
+                        {Object.keys(venue).map((key, index) =>{
+                            const link ='/location-page/' + venue[key].venueID
+                            return (
+                                <MarkerF key={venue[key].venueID}
+                                         position={{lat: venue[key].latitude, lng: venue[key].longitude}}
+                                         onClick={() => handleLocationClick(venue[key].venueID)}/>
+                            )
+                        }
                         )}
                     </GoogleMap>
                 </Paper>

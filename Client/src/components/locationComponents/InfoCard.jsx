@@ -10,18 +10,15 @@ const Event = ({id, dateTime, description, presenter, price, title}) => {
                     <Typography gutterBottom variant='h4' component="div">
                         {title}
                     </Typography>
-                    <Typography gutterBottom variant='h5'>
-                        {dateTime}
-                    </Typography>
-                    <Typography gutterBottom variant='h5'>
-                        {presenter}
+                <Typography gutterBottom variant='h5'>
+                        {event.presenter}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         {readmore?description: ""}
                         <Button onClick={()=>setReadmore(!readmore)}>Read Description</Button>
                     </Typography>
                     <Typography gutterBottom variant='h5'>
-                        ${price}
+                        ${event.price}
                     </Typography>
 
                 </CardContent>
