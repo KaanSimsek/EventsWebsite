@@ -77,7 +77,7 @@ db.once('open', function () {
     app.use('/admin',venueCRUDRouter)
     app.use('/user', venueCRUDRouter)
     app.use('/user', eventCRUDRouter)
-    app.use('/user', commentRouter)
+    app.use('/comment', commentRouter)
 
 
     app.post("/login-user",async (req,res)=>{

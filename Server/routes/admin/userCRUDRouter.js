@@ -47,7 +47,6 @@ userRouter.post("/api/user",async (req,res)=>{
             name:name,
             username:username,
             email:email,
-            favLocations: [],
             password: encryptedPassword,
         });
 

@@ -94,8 +94,6 @@ export default function UserPage() {
                     <Container maxWidth="xlg" sx={{ mt: 4, mb: 4}}>
                         <Map />
                     </Container>
-
-                    <Toolbar />
                 </Box>
 
             </Box>

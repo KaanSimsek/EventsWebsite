@@ -8,14 +8,6 @@ function CreateNewUser(props) {
                 <TextInput source="name" required />
                 <TextInput source="username" required />
                 <TextInput source="email" required />
-                <Typography component="span" variant="body2">
-                    Fav Location
-                </Typography>
-                <ArrayInput source="favLoc">
-                    <SimpleFormIterator>
-                        <NumberInput source="favLocID"/>
-                    </SimpleFormIterator>
-                </ArrayInput>
                 <PasswordInput source="password" required/>
             </SimpleForm>
         </Create>

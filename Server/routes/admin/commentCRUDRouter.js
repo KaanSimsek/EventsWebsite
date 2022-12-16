@@ -7,21 +7,22 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 commentRouter.use(cors());
 
-commentRouter.get("/api/comments",async (req,res)=>{
+commentRouter.get("/api/comments/:id",async (req,res)=>{
     try {
-        const comment = await Comments.find();
+        const comment = await Comments.find({venueID: req.params.id});
         res.send(comment)
     }catch (e) {
         res.send(e);
     }
 });
 
-commentRouter.post("/api/comment",async (req,res)=>{
+commentRouter.post("/api/comment/:id",async (req,res)=>{
     const {username, content} = req.body;
 
     const newComment = await Comments.create({
         username: username,
         comment: content,
+        venueID: req.param.id
     })
     res.send(newComment)
 
