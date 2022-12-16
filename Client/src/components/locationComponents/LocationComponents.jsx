@@ -71,12 +71,6 @@ function LocationPage() {
 
         const handleAddFav = (e) =>{
             e.preventDefault()
-            fetch('http://localhost:4000/favLoc', {
-                method: 'POST',
-                headers: new Headers(),
-                body: JSON.stringify({ communityName: communityName, body: files })
-
-            })
         }
 
         return (
