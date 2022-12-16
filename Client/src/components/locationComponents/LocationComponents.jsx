@@ -72,7 +72,7 @@ function LocationPage() {
                     username: username,
                     location:venue.venueID,
                 }),
-            })
+            }).then(()=>alert("Favourite Location Added"))
         }
 
         return (

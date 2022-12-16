@@ -38,7 +38,8 @@ function RegisterComponent() {
               else if(data.status==="non-unique-password"){
                 alert("non-unique-password");
               }
-            });
+            })
+            .then(() => window.location.href = "./");
 
     }
 
@@ -51,7 +52,7 @@ function RegisterComponent() {
             <input
               type="text"
               className="form-control"
-              placeholder="First name"
+              placeholder="Name"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -61,7 +62,7 @@ function RegisterComponent() {
             <input
               type="text"
               className="form-control"
-              placeholder="Last name"
+              placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
