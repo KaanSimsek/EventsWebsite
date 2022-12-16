@@ -6,7 +6,8 @@ const Event = (props) => {
     const [readmore, setReadmore] = useState(false)
     const event = props.event
 
-  return <article className='single-location'>
+  return <article>
+        <div style={{ padding: 14, display: "flex", justifyContent: "center" }}>
             <Card position='flex' border='6px' margin='6px' >
                 <CardContent>
                     <Typography gutterBottom variant='h4' component="div">
@@ -20,7 +21,7 @@ const Event = (props) => {
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         {readmore?(event.description): ""}
-                        <Button onClick={()=>setReadmore(!readmore)}>Read Description</Button>
+                        <Button size="large" onClick={()=>setReadmore(!readmore)}>Description</Button>
                     </Typography>
                     <Typography gutterBottom variant='h5'>
                         ${event.price}
@@ -28,6 +29,7 @@ const Event = (props) => {
 
                 </CardContent>
             </Card>
+        </div>
 
   </article>;
 };
