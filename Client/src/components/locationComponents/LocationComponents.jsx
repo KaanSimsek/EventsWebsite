@@ -1,16 +1,12 @@
 import {useMemo, useState, useEffect} from "react";
 import { useParams, useLocation } from 'react-router-dom';
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import { Paper, Box, Card, CardContent, Typography } from '@mui/material';
-import Event from './InfoCard'
+import { Paper, Box, Card, CardContent, Typography, CssBaseline, Toolbar, Container, AppBar , Grid , Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import AppBar from '@mui/material/AppBar';
-import Grid from "@mui/material/Grid";
-import Button from '@mui/material/Button';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Event from './InfoCard'
+import Comment from './CommentCard'
+import CommentForm from './CommentForm'
 
 const mdTheme = createTheme();
 
@@ -43,24 +39,15 @@ function LocationPage() {
             //     setEvents(data)
             //     console.log(events)
             // })
+
+            fetch(`http://localhost:4000/comment/api/comments/${id}`)
+                .then((data) => data.json())
+                .then((data) => setComment(data))
+                .catch((err) => {console.log(err)})
         }
 
         useEffect(()=>{
             handleFetchData()
-        }, [])
-
-        const fetchComment = async () => {
-            try {
-                const response = await fetch('http://localhost:4000/user/api/comments')
-                const comments = await response.json()
-                setComment(comments)
-                console.log(comments)
-            } catch(error) {
-                console.log(error)
-            }
-        }
-        useEffect(()=>{
-            fetchComment()
         }, [])
 
         // const onLoad = useCallback((map) => (mapRef.current = map),[]);
@@ -74,17 +61,17 @@ function LocationPage() {
             console.log(venue.venueID)
             const username = window.sessionStorage.getItem("username")
             fetch('http://localhost:4000/favLoc/api',{
-            method: "POST",
-            crossDomain: true,
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify({
-                username: username,
-                location:venue.venueID,
-            }),
+                method: "POST",
+                crossDomain: true,
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    location:venue.venueID,
+                }),
             })
         }
 
@@ -134,7 +121,9 @@ function LocationPage() {
                 </Paper>
 
                 <div className='title'>
-                    <h1>Event Information</h1>
+                    <Typography variant="h1" display="block" gutterBottom>
+                        Event Information
+                    </Typography>
                     <div className='underline'></div>
                 </div>
 
@@ -142,9 +131,26 @@ function LocationPage() {
                     {Object.keys(events).map((key, index) => <Event event={events[key]}/>)}
                 </div>
 
-                <Typography variant="h1" display="block" gutterBottom>
-                    Comment Session
-                </Typography>
+                <div>
+                    <Typography variant="h1" display="block" gutterBottom>
+                        Comment Session
+                    </Typography>
+                    <div className='underline'></div>
+                </div>
+
+                <div className='comment-div'>
+                    {Object.keys(comment).map((key, index) => <Comment comment={comment[index]}/>)}
+                </div>
+
+                <div className='title'>
+                    <Typography variant="h1" display="block" gutterBottom>
+                        Post Your Comment
+                    </Typography>
+                    <div className='underline'></div>
+                </div>
+
+                <CommentForm venueID={venue.venueID}/>
+
             </ThemeProvider>
         )
 }

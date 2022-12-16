@@ -18,13 +18,14 @@ commentRouter.get("/api/comments/:id",async (req,res)=>{
 
 commentRouter.post("/api/comment/:id",async (req,res)=>{
     const {username, content} = req.body;
-
-    const newComment = await Comments.create({
+    const venueID = Number(req.params.id)
+    Comments.create({
         username: username,
         comment: content,
-        venueID: req.param.id
+        venueID: venueID
+    }, (err, c) => {
+        res.status(201).send(c)
     })
-    res.send(newComment)
 
 });
 
