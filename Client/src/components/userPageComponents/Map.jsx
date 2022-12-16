@@ -22,12 +22,12 @@ export default function Map(){
     const onLoad = useCallback((map) => (mapRef.current = map),[]);
 
     const handleFetchData = () => {
-        fetch('http://localhost:4000/user/api/venue')
+        fetch('./api/user/venue')
             .then((data) => data.json())
             .then((data) => {
                 // count # of event for venues
                 data.forEach(item => {
-                    fetch('http://localhost:4000/user/api/event/query/' + item.venueID)
+                    fetch('./api/user/event/query/' + item.venueID)
                         .then((data) => data.json())
                         .then((data) => {item.eventNum = data.length})
                 })

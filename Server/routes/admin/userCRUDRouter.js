@@ -6,7 +6,7 @@ const bcrypt = require("bcryptjs");
 const cors = require("cors");
 userRouter.use(cors());
 
-userRouter.post("/api/user/delete",async (req,res)=>{
+userRouter.post("/user/delete",async (req,res)=>{
     console.log("Entered")
     const userId=req.body.id;
     const email=req.body.previousData.email;
@@ -18,7 +18,7 @@ userRouter.post("/api/user/delete",async (req,res)=>{
 
 });
 
-userRouter.post("/api/users/delete",async(req,res)=>{
+userRouter.post("/users/delete",async(req,res)=>{
     console.log(req.body.ids)
     const ids=req.body.ids
     ids.forEach(async (id)=>{
@@ -27,7 +27,7 @@ userRouter.post("/api/users/delete",async(req,res)=>{
     console.log("Entered to multiple delete")
 });
 
-userRouter.post("/api/user",async (req,res)=>{
+userRouter.post("/user",async (req,res)=>{
     const { name, username, email, password } = req.body;
 
     console.log("entered");
@@ -58,7 +58,7 @@ userRouter.post("/api/user",async (req,res)=>{
 
 });
 
-userRouter.put("/api/user/:id",async (req,res)=>{
+userRouter.put("/user/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
     const password=await bcrypt.hash(body.data.password,10);
@@ -73,7 +73,7 @@ userRouter.put("/api/user/:id",async (req,res)=>{
 });
 
 
-userRouter.get("/api/user",async (req,res)=>{
+userRouter.get("/user",async (req,res)=>{
     try {
         const user = await User.find();
         res.send(user)
@@ -82,7 +82,7 @@ userRouter.get("/api/user",async (req,res)=>{
     }
 });
 
-userRouter.get("/api/user/:id",async (req,res)=>{
+userRouter.get("/user/:id",async (req,res)=>{
     const id=req.params.id;
     console.log(req.body)
     console.log(req.params)

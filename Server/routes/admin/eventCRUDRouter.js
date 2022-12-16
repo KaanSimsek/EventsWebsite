@@ -5,7 +5,7 @@ const Event = mongoose.model("EventInfo");
 const cors = require("cors");
 eventRouter.use(cors());
 
-eventRouter.post("/api/event/delete",async (req,res)=>{
+eventRouter.post("/event/delete",async (req,res)=>{
     console.log("Entered")
     const eventID=req.body.previousData.eventID;
     const eventToDelete = await Event.findOne({eventID});
@@ -16,7 +16,7 @@ eventRouter.post("/api/event/delete",async (req,res)=>{
 
 });
 
-eventRouter.post("/api/events/delete",async(req,res)=>{
+eventRouter.post("/events/delete",async(req,res)=>{
     console.log(req.body.ids)
     const ids=req.body.ids
     ids.forEach(async (id)=>{
@@ -25,7 +25,7 @@ eventRouter.post("/api/events/delete",async(req,res)=>{
     console.log("Entered to multiple delete")
 });
 
-eventRouter.post("/api/event",async (req,res)=>{
+eventRouter.post("/event",async (req,res)=>{
     const { title, venueID, dateTime, description,presenter,price } = req.body;
     console.log(title)
 
@@ -50,7 +50,7 @@ eventRouter.post("/api/event",async (req,res)=>{
 
 });
 
-eventRouter.put("/api/event/:id",async (req,res)=>{
+eventRouter.put("/event/:id",async (req,res)=>{
     const body = req.body
     const id=body.id
     console.log(body)
@@ -68,13 +68,13 @@ eventRouter.put("/api/event/:id",async (req,res)=>{
 });
 
 
-eventRouter.get("/api/event",async (req,res)=>{
+eventRouter.get("/event",async (req,res)=>{
     const event = await Event.find();
     res.send(event)
 
 });
 
-eventRouter.get("/api/event/:id",async (req,res)=>{
+eventRouter.get("/event/:id",async (req,res)=>{
     const id=req.params.id;
     try {
         const event = await Event.findOne({_id:id});
@@ -84,7 +84,7 @@ eventRouter.get("/api/event/:id",async (req,res)=>{
     }
 });
 
-eventRouter.get("/api/event/query/:venueID", async (req,res) => {
+eventRouter.get("/event/query/:venueID", async (req,res) => {
     const venueID = req.params.venueID;
     try{
         const event = await Event.find({venueID:venueID});

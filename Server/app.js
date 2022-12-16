@@ -16,6 +16,8 @@ const port = process.env.PORT
 
 const mongoUrl = process.env.MONGO_URI;
 
+app.use(express.static('app'));
+
 async function connect(){
     try{
         await mongoose
@@ -56,12 +58,12 @@ db.once('open', function () {
     const User = mongoose.model("UserInfo");
     const Admin = mongoose.model("AdminInfo");
     async function connet(){
-        const password= await bcrypt.hash("ks2019", 10);
+        const password = await bcrypt.hash("admin", 10);
         try{
             await Admin.create({
-                name:"Kaan Simsek",
-                username:"KaanSimsek",
-                email:"kaan.simsek01@gmail.com",
+                name:"Admin",
+                username:"admin",
+                email:"admin@admin.com",
                 password: password,
             });
 
@@ -71,16 +73,17 @@ db.once('open', function () {
         }
     }
     //connet();
-    app.use('/favLoc',favLocationsRouter)
-    app.use('/admin',userCRUDRouter)
-    app.use('/admin',eventCRUDRouter)
-    app.use('/admin',venueCRUDRouter)
-    app.use('/user', venueCRUDRouter)
-    app.use('/user', eventCRUDRouter)
-    app.use('/comment', commentRouter)
+    app.use('/api/favLoc',favLocationsRouter)
+    app.use('/api/admin',userCRUDRouter)
+    app.use('/api/admin',eventCRUDRouter)
+    app.use('/api/admin',venueCRUDRouter)
+    app.use('/api/user', venueCRUDRouter)
+    app.use('/api/user', eventCRUDRouter)
+    app.use('/api/comment', commentRouter)
 
+    app.use(express.static('app'));
 
-    app.post("/login-user",async (req,res)=>{
+    app.post("/api/login-user",async (req,res)=>{
         const { username, password } = req.body;
 
         const user = await User.findOne({ username });
@@ -100,7 +103,7 @@ db.once('open', function () {
     })
 
 
-    app.post("/register", async (req, res) => {
+    app.post("/api/register", async (req, res) => {
         const { name, username, email, password } = req.body;
         const encryptedPassword = await bcrypt.hash(password, 10);
         try {
@@ -127,7 +130,7 @@ db.once('open', function () {
         }
     });
 
-    app.post("/login-admin",async (req,res)=>{
+    app.post("/api/login-admin",async (req,res)=>{
         const { username, password } = req.body;
         const admin = await Admin.findOne({ username });
         if (!admin) {

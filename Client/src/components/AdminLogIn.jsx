@@ -8,7 +8,7 @@ function AdminLogIn() {
 
     const handleSubmit=(e)=>{
       e.preventDefault();
-        fetch("http://localhost:4000/login-admin", {
+        fetch("./api/login-admin", {
             method: "POST",
             crossDomain: true,
             headers: {

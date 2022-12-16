@@ -21,7 +21,7 @@ function LocationPage() {
         }),[]);
 
         const handleFetchData = () => {
-            fetch(`http://localhost:4000/user/api/venue/${id}`)
+            fetch(`./api/user/venue/${id}`)
                 .then((data) => data.json())
                 .then((data) => {
                     setCenter({lat: data.latitude, lng: data.longitude})
@@ -29,7 +29,7 @@ function LocationPage() {
                 })
                 .catch((err) => {console.log(err)})
 
-            fetch(`http://localhost:4000/user/api/event/query/${id}`)
+            fetch(`/api/user/event/query/${id}`)
                 .then((data) => data.json())
                 .then((data) => setEvents(data))
                 .catch((err) => {console.log(err)})
@@ -40,7 +40,7 @@ function LocationPage() {
             //     console.log(events)
             // })
 
-            fetch(`http://localhost:4000/comment/api/comments/${id}`)
+            fetch(`./api/comment/comments/${id}`)
                 .then((data) => data.json())
                 .then((data) => setComment(data))
                 .catch((err) => {console.log(err)})
@@ -60,7 +60,7 @@ function LocationPage() {
             e.preventDefault()
             console.log(venue.venueID)
             const username = window.sessionStorage.getItem("username")
-            fetch('http://localhost:4000/favLoc/api',{
+            fetch('./api/favLoc',{
                 method: "POST",
                 crossDomain: true,
                 headers: {

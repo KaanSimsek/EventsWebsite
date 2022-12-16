@@ -10,7 +10,7 @@ export default function CommentForm(props) {
 
     const handleCommentSubmit = (e) => {
         e.preventDefault()
-        axios.post(`http://localhost:4000/comment/api/comment/${venueID}`, {
+        axios.post(`./api/comment/api/comment/${venueID}`, {
             username: userName,
             content: commentInput,
         }).then((res) => console.log(res))

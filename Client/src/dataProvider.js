@@ -1,12 +1,12 @@
 import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
 
-const apiUrl = 'http://localhost:4000/admin';
+const apiUrl = './api/admin';
 const httpClient = fetchUtils.fetchJson;
 
 export default {
   getList: (resource, params) => {
-    const url="http://localhost:4000/admin"
+    const url="./admin"
     //console.log(url);
     //console.log("Kaan ");
     return httpClient(url).then(({ headers, json }) => ({

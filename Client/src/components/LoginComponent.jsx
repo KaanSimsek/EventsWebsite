@@ -6,7 +6,7 @@ export default function LoginComponent() {
     const [password, setPassword] = useState("")
     const handleSubmit=(e)=>{
       e.preventDefault();
-        fetch("http://localhost:4000/login-user", {
+        fetch("./api/login-user", {
             method: "POST",
             crossDomain: true,
             headers: {

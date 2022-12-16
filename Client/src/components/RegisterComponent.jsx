@@ -8,7 +8,7 @@ function RegisterComponent() {
 
     const handleSubmit=(e)=>{
       e.preventDefault();
-        fetch("http://localhost:4000/register", {
+        fetch("./api/register", {
             method: "POST",
             crossDomain: true,
             headers: {

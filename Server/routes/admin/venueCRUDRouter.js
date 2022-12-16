@@ -59,13 +59,13 @@ venueRouter.put("/api/venue/:id",async (req,res)=>{
 });
 
 
-venueRouter.get("/api/venue",async (req,res)=>{
+venueRouter.get("/venue",async (req,res)=>{
     const venue = await Venue.find();
     res.send(venue)
 
 });
 
-venueRouter.get("/api/venue/:id",async (req,res)=>{
+venueRouter.get("/venue/:id",async (req,res)=>{
     const id=req.params.id;
     try {
         const venue = await Venue.findOne({venueID:id});
