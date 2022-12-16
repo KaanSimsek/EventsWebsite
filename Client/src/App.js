@@ -11,7 +11,6 @@ import LocationPage from './components/locationComponents/LocationComponents';
 
 function App() {
     return (
-
         <Router>
             <div className='App'>
                 <div className="auth-wrapper">

@@ -13,9 +13,9 @@ function LocationPage() {
         }),[]);
 
         const handleFetchData = () => {
-            fetch('http://localhost:4000/user/api/venue')
+            fetch(`http://localhost:4000/user/api/venue/${id}`)
                 .then((data) => data.json())
-                .then((data) => setCenter({lat: data[0].latitude, lng: data[0].longitude}))
+                .then((data) => setCenter({lat: data.latitude, lng: data.longitude}))
                 .catch((err) => {console.log(err)})
 
             fetch(`http://localhost:4000/user/api/event/query/${id}`)

@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
+import moment from 'moment'
 
 const Event = ({id, dateTime, description, presenter, price, title}) => {
     const [readmore, setReadmore] = useState(false)
@@ -11,14 +12,14 @@ const Event = ({id, dateTime, description, presenter, price, title}) => {
                         {title}
                     </Typography>
                 <Typography gutterBottom variant='h5'>
-                        {event.presenter}
+                        {presenter}
                     </Typography>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         {readmore?description: ""}
                         <Button onClick={()=>setReadmore(!readmore)}>Read Description</Button>
                     </Typography>
                     <Typography gutterBottom variant='h5'>
-                        ${event.price}
+                        ${price}
                     </Typography>
 
                 </CardContent>

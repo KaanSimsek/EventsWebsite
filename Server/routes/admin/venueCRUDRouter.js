@@ -68,7 +68,7 @@ venueRouter.get("/api/venue",async (req,res)=>{
 venueRouter.get("/api/venue/:id",async (req,res)=>{
     const id=req.params.id;
     try {
-        const venue = await Venue.findOne({_id:id});
+        const venue = await Venue.findOne({venueID:id});
         res.send(venue)
     }catch (e) {
         res.send(e);
